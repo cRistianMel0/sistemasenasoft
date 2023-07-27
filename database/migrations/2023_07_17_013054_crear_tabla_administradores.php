@@ -15,6 +15,7 @@ class CrearTablaAdministradores extends Migration
             $table->string('tipoDoc', 20);
             $table->string('documento', 14);
             $table->string('correo', 40);
+            $table->string('contrasena', 60);
             $table->timestamps();
         });
     }

@@ -18,6 +18,7 @@ class CrearTablaCiudadanos extends Migration
             $table->string('telCelular', 16)->nullable();
             $table->string('telFijo', 16)->nullable();
             $table->string('correo', 40);
+            $table->string('contrasena', 60);
             $table->string('municipio', 40);
             $table->string('direccion', 20)->nullable();
             $table->string('barrioVereda', 40);
