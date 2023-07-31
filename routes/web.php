@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Sondeo;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('indexAdmin');
+    $sondeos = Sondeo::all();
+        
+    return view('index', ['sondeos'=>$sondeos]);
 });
 
 
@@ -26,3 +30,4 @@ Route::post('sondeos/store', 'SondeosController@store')->name('sondeos.store');
 
 
 
+Route::get('index', 'SondeosController@index')->name('index');
