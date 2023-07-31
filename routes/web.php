@@ -15,8 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('indexAdmin');
 });
+
+
+// RUTAS SONDEOS
+Route::get('sondeos/create', 'SondeosController@create')->name('sondeos.create');
+
+Route::post('sondeos/store', 'SondeosController@store')->name('sondeos.store');
 
 
 
