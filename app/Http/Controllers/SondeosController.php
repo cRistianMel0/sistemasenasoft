@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sondeos;
+use Carbon\Carbon; // Facilita el trabajo entre fechas
 
 class SondeosController extends Controller
 {
@@ -20,7 +21,7 @@ class SondeosController extends Controller
      */
     public function create()
     {
-        
+        return view('sondeos/create');
     }
 
     /**
@@ -28,7 +29,28 @@ class SondeosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'titulo' => 'required',
+            'descripcion' => 'required',
+            'resultado' => 'required',
+            'fechaHoraInicio' => 'required|date|after_or_equal:' . Carbon::now(),
+            'fechaHoraFin' => 'required|date|after_or_equal:fechaHoraInicio',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $data = $request->all();
+
+        // Procesar la imagen si se ha cargado
+        if ($request->hasFile('imagen')) {
+            $image = $request->file('imagen');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            $data['imagen'] = $imageName;
+        }
+
+        Sondeo::create($data);
+
+        return redirect()->route('sondeos.index')->with('success', 'Sondeo creado exitosamente.');
     }
 
     /**

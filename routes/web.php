@@ -23,5 +23,11 @@ Route::get('/', function () {
 });
 
 
+// RUTAS SONDEOS
+Route::get('sondeos/create', 'SondeosController@create')->name('sondeos.create');
+
+Route::post('sondeos/store', 'SondeosController@store')->name('sondeos.store');
+
+
 
 Route::get('index', 'SondeosController@index')->name('index');
