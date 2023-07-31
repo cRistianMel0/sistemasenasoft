@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Sondeo extends Model
 {
     protected $fillable=[
-        'idSondeo',
-        'idAdministrador',
         'idTema',
         'idCriterio',
         'titulo',

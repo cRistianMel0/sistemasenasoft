@@ -26,7 +26,11 @@
                         <div class="row mb-4">
                             <div class="col">
                                 <label for="tema">Tema</label>
-                                <input type="search" name="tema" id="tema" class="form-control">
+                                <select name="idTema" id="">
+                                    @foreach($temas as $tema)
+                                        <option value="{{$tema->idTema}}">{{$tema->nombre}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col">
                                 <label for="titulo">Título Sondeo</label>

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Sondeos;
+
+use App\Models\Sondeo;
+use App\Models\Tema;
+
 use Carbon\Carbon; // Facilita el trabajo entre fechas
 
 class SondeosController extends Controller
@@ -13,7 +16,7 @@ class SondeosController extends Controller
      */
     public function index()
     {
-        //
+        return view('index');
     }
 
     /**
@@ -21,7 +24,9 @@ class SondeosController extends Controller
      */
     public function create()
     {
-        return view('sondeos/create');
+        $temas = Tema::orderBy('nombre', 'ASC')->get();
+
+        return view('sondeos/create', ['temas'=>$temas]);
     }
 
     /**
@@ -50,7 +55,7 @@ class SondeosController extends Controller
 
         Sondeo::create($data);
 
-        return redirect()->route('sondeos.index')->with('success', 'Sondeo creado exitosamente.');
+        return redirect()->route('index')->with('success', 'Sondeo creado exitosamente.');
     }
 
     /**
