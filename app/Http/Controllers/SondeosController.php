@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sondeo;
 use Illuminate\Http\Request;
-use App\Models\Sondeos;
+use Illuminate\Routing\Controller;
 
 class SondeosController extends Controller
 {
@@ -12,8 +13,11 @@ class SondeosController extends Controller
      */
     public function index()
     {
-        //
+        $sondeos = Sondeo::all();
+        
+        return view('index', ['sondeos'=>$sondeos]);
     }
+    
 
     /**
      * Show the form for creating a new resource.

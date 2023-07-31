@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Sondeo;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    $sondeos = Sondeo::all();
+        
+    return view('index', ['sondeos'=>$sondeos]);
 });
-
 
 
