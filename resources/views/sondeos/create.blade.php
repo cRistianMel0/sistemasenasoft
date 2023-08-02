@@ -3,7 +3,7 @@
 @section('title', 'Crear Sondeo')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/sondeo-create.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sondeos-create.css') }}">
 @endsection
 
 @section('contenido')
@@ -17,17 +17,26 @@
         </div>
 
         <div class="bg-white mb-4 border rounded-bottom-3 border-secondary-subtle">
-            <form class="p-3" action="{{route('sondeos.store')}}" method="POST">
+            <form class="p-3" action="{{ route('sondeos.store') }}" method="POST">
                 @csrf
                 <!-- Contenido del formulario oculto por defecto -->
                 <div id="formularioDiv">
+                    <!-- Contenido de Configuración -->
                     <div class="container mt-3" id="configuracionDiv">
-                        <!-- Contenido de Configuración -->
                         <div class="row mb-4">
                             <div class="col">
-                                <label for="tema">Tema</label>
-                                <input type="search" name="tema" id="tema" class="form-control">
-                            </div>
+                                <div>
+                                    <label for="tema">Tema</label>
+                                </div>
+                                <div class="input-group">
+                                    <select name="idTema" id="idTema" class="form-select">
+                                        @foreach($temas as $tema)
+                                            <option value="{{$tema->idTema}}">{{$tema->nombre}}</option>                                       
+                                        @endforeach
+                                    </select>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearTemaModal">Nuevo</button>
+                                </div>
+                            </div>                            
                             <div class="col">
                                 <label for="titulo">Título Sondeo</label>
                                 <input type="text" name="titulo" id="titulo" class="form-control">
@@ -55,23 +64,20 @@
                         </div>
                     </div>
     
+                    <!-- Contenido de Preguntas -->
                     <div class="container mt-5" id="preguntasDiv" style="display: none;">
-                        <!-- Contenido de Preguntas -->
-                        <div class="row mb-4">
+                        <div id="preguntasContainer">
+                            <!-- Aquí mostraremos las preguntas existentes y las nuevas que se agreguen -->
+                        </div>
+                        <div class="row mt-3">
                             <div class="col">
-                                <label for="pregunta1">Pregunta 1</label>
-                                <input type="text" name="pregunta1" id="pregunta1" class="form-control">
-                            </div>
-                            <div class="col">
-                                <label for="pregunta2">Pregunta 2</label>
-                                <input type="text" name="pregunta2" id="pregunta2" class="form-control">
+                                <button type="button" class="btn btn-primary" onclick="agregarPregunta()">Agregar Pregunta</button>
                             </div>
                         </div>
-                        <!-- Agregar más preguntas si es necesario -->
                     </div>
     
+                    <!-- Contenido de Parametrización -->
                     <div class="container mt-5" id="parametrizacionDiv" style="display: none;">
-                        <!-- Contenido de Parametrización -->
                         <div class="row mb-4">
                             <div class="col">
                                 <label for="parametro1">Parámetro 1</label>
@@ -84,7 +90,7 @@
                             <!-- Agregar más parámetros si es necesario -->
                         </div>
 
-                        <!-- Botón para enviar el formulario -->
+                        <!-- Botón para guardar el formulario -->
                         <div class="row mt-4 mb-3 text-center">
                             <div class="col">
                                 <button type="submit" class="btn btn-primary">Guardar Sondeo</button>
@@ -96,14 +102,35 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        // Función para mostrar el div correspondiente y resaltar el botón activo
-        function showDiv(divId, buttonId) {
-            $('#configuracionDiv, #preguntasDiv, #parametrizacionDiv').hide();
-            $('#' + divId).show();
-            $('.btn').removeClass('btn-active');
-            $('#' + buttonId).addClass('btn-active');
-        }
-    </script>
+    <!-- Modal para crear un nuevo tema -->
+    <div class="modal fade" id="crearTemaModal" tabindex="-1" aria-labelledby="crearTemaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="crearTemaModalLabel">Nuevo Tema</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="crearTemaForm" action="{{ route('temas.store') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="nombreTema" class="form-label">Nombre del Tema:</label>
+                            <input type="text" class="form-control" id="nombreTema" name="nombreTema" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcionTema" class="form-label">Descripción del Tema:</label>
+                            <textarea class="form-control" id="descripcionTema" name="descripcionTema" rows="3" required></textarea>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">Guardar Tema</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/sondeos-create.js') }}"></script>
 @endsection
