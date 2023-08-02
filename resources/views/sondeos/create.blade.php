@@ -17,7 +17,7 @@
         </div>
 
         <div class="bg-white mb-4 border rounded-bottom-3 border-secondary-subtle">
-            <form class="p-3" action="{{route('sondeos.store')}}" method="POST">
+            <form class="p-3" action="{{ route('sondeos.store') }}" method="POST">
                 @csrf
                 <!-- Contenido del formulario oculto por defecto -->
                 <div id="formularioDiv">
@@ -25,13 +25,18 @@
                         <!-- Contenido de Configuración -->
                         <div class="row mb-4">
                             <div class="col">
-                                <label for="tema">Tema</label>
-                                <select name="idTema" id="">
-                                    @foreach($temas as $tema)
-                                        <option value="{{$tema->idTema}}">{{$tema->nombre}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                                <div>
+                                    <label for="tema">Tema</label>
+                                </div>
+                                <div class="input-group">
+                                    <select name="idTema" id="idTema" class="form-select">
+                                        @foreach($temas as $tema)
+                                            <option value="{{$tema->idTema}}">{{$tema->nombre}}</option>                                       
+                                        @endforeach
+                                    </select>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearTemaModal">Nuevo</button>
+                                </div>
+                            </div>                            
                             <div class="col">
                                 <label for="titulo">Título Sondeo</label>
                                 <input type="text" name="titulo" id="titulo" class="form-control">
@@ -110,4 +115,31 @@
             $('#' + buttonId).addClass('btn-active');
         }
     </script>
+
+
+    <!-- Modal para crear un nuevo tema -->
+    <div class="modal fade" id="crearTemaModal" tabindex="-1" aria-labelledby="crearTemaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="crearTemaModalLabel">Nuevo Tema</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="crearTemaForm" action="{{ route('temas.store') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="nombreTema" class="form-label">Nombre del Tema:</label>
+                            <input type="text" class="form-control" id="nombreTema" name="nombreTema" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcionTema" class="form-label">Descripción del Tema:</label>
+                            <textarea class="form-control" id="descripcionTema" name="descripcionTema" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Guardar Tema</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

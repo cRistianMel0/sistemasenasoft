@@ -33,3 +33,6 @@ Route::get('sondeos/create', 'SondeosController@create')->name('sondeos.create')
 Route::post('sondeos/store', 'SondeosController@store')->name('sondeos.store');
 
 
+// RUTAS TEMAS
+Route::post('temas/store', 'TemasController@store')->name('temas.store');
+
