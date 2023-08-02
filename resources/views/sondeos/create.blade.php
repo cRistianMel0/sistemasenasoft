@@ -3,7 +3,7 @@
 @section('title', 'Crear Sondeo')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/sondeo-create.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sondeos-create.css') }}">
 @endsection
 
 @section('contenido')
@@ -21,8 +21,8 @@
                 @csrf
                 <!-- Contenido del formulario oculto por defecto -->
                 <div id="formularioDiv">
+                    <!-- Contenido de Configuración -->
                     <div class="container mt-3" id="configuracionDiv">
-                        <!-- Contenido de Configuración -->
                         <div class="row mb-4">
                             <div class="col">
                                 <div>
@@ -64,23 +64,20 @@
                         </div>
                     </div>
     
+                    <!-- Contenido de Preguntas -->
                     <div class="container mt-5" id="preguntasDiv" style="display: none;">
-                        <!-- Contenido de Preguntas -->
-                        <div class="row mb-4">
+                        <div id="preguntasContainer">
+                            <!-- Aquí mostraremos las preguntas existentes y las nuevas que se agreguen -->
+                        </div>
+                        <div class="row mt-3">
                             <div class="col">
-                                <label for="pregunta1">Pregunta 1</label>
-                                <input type="text" name="pregunta1" id="pregunta1" class="form-control">
-                            </div>
-                            <div class="col">
-                                <label for="pregunta2">Pregunta 2</label>
-                                <input type="text" name="pregunta2" id="pregunta2" class="form-control">
+                                <button type="button" class="btn btn-primary" onclick="agregarPregunta()">Agregar Pregunta</button>
                             </div>
                         </div>
-                        <!-- Agregar más preguntas si es necesario -->
                     </div>
     
+                    <!-- Contenido de Parametrización -->
                     <div class="container mt-5" id="parametrizacionDiv" style="display: none;">
-                        <!-- Contenido de Parametrización -->
                         <div class="row mb-4">
                             <div class="col">
                                 <label for="parametro1">Parámetro 1</label>
@@ -93,7 +90,7 @@
                             <!-- Agregar más parámetros si es necesario -->
                         </div>
 
-                        <!-- Botón para enviar el formulario -->
+                        <!-- Botón para guardar el formulario -->
                         <div class="row mt-4 mb-3 text-center">
                             <div class="col">
                                 <button type="submit" class="btn btn-primary">Guardar Sondeo</button>
@@ -104,17 +101,6 @@
             </form>
         </div>
     </div>
-
-    <script>
-        // Función para mostrar el div correspondiente y resaltar el botón activo
-        function showDiv(divId, buttonId) {
-            $('#configuracionDiv, #preguntasDiv, #parametrizacionDiv').hide();
-            $('#' + divId).show();
-            $('.btn').removeClass('btn-active');
-            $('#' + buttonId).addClass('btn-active');
-        }
-    </script>
-
 
     <!-- Modal para crear un nuevo tema -->
     <div class="modal fade" id="crearTemaModal" tabindex="-1" aria-labelledby="crearTemaModalLabel" aria-hidden="true">
@@ -143,4 +129,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('js/sondeos-create.js') }}"></script>
 @endsection
