@@ -136,7 +136,9 @@
                             <label for="descripcionTema" class="form-label">Descripción del Tema:</label>
                             <textarea class="form-control" id="descripcionTema" name="descripcionTema" rows="3" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Guardar Tema</button>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">Guardar Tema</button>
+                        </div>
                     </form>
                 </div>
             </div>
