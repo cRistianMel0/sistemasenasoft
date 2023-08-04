@@ -135,7 +135,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="crearPreguntaForm" action="" method="POST">
+                    <form id="crearPreguntaForm" action="{{ route('preguntas.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="descripcionPregunta" class="form-label">Pregunta:</label>

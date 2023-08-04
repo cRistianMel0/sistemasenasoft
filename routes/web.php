@@ -36,3 +36,7 @@ Route::post('sondeos/store', 'SondeosController@store')->name('sondeos.store');
 // RUTAS TEMAS
 Route::post('temas/store', 'TemasController@store')->name('temas.store');
 
+
+// RUTAS PREGUNTAS
+Route::post('preguntas/store', 'PreguntasController@store')->name('preguntas.store');
+
