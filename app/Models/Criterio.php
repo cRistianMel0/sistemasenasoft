@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pregunta extends Model
+class Criterio extends Model
 {
     protected $fillable=[
-        'idSondeo',
-        'descripcion',
-        'tipo'
+        'nombre',
+        'condicion',
+        'valor1',
+        'valor2'
     ];
 
-    protected $primaryKey = 'idPregunta';
+    protected $primaryKey = 'idCriterio';
 }

@@ -27,16 +27,18 @@ Route::get('/', function () {
 Route::get('index', 'SondeosController@index')->name('index');
 
 
-// RUTAS SONDEOS
-Route::get('sondeos/create', 'SondeosController@create')->name('sondeos.create');
-
-Route::post('sondeos/store', 'SondeosController@store')->name('sondeos.store');
-
+// RUTAS CRITERIOS
+Route::post('criterios/store', 'CriterioController@store')->name('criterios.store');
 
 // RUTAS TEMAS
 Route::post('temas/store', 'TemasController@store')->name('temas.store');
 
+// RUTAS SONDEOS
+Route::get('sondeos/create', 'SondeosController@create')->name('sondeos.create');
+Route::post('sondeos/store', 'SondeosController@store')->name('sondeos.store');
 
 // RUTAS PREGUNTAS
 Route::post('preguntas/store', 'PreguntasController@store')->name('preguntas.store');
+
+
 
