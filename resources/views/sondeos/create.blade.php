@@ -12,14 +12,14 @@
 
         <div class="d-flex">
             <button id="btnConfiguracion" class="btn btn-outline-secondary rounded-3 rounded-bottom-0 btn-active">Configuración</button>
-            <button id="btnPreguntas" class="btn btn-outline-secondary rounded-3 rounded-bottom-0">Preguntas</button>
             <button id="btnParametrizacion" class="btn btn-outline-secondary rounded-3 rounded-bottom-0">Parametrización</button>   
+            <button id="btnPreguntas" class="btn btn-outline-secondary rounded-3 rounded-bottom-0">Preguntas</button>
         </div>
 
         <div class="bg-white mb-4 border rounded-bottom-3 border-secondary-subtle">
-            <form class="p-3" action="{{ route('sondeos.store') }}" method="POST">
-                @csrf
-                <div id="formularioDiv">
+            <div id="formularioDiv">
+                <form class="p-3" action="{{ route('sondeos.store') }}" method="POST">
+                    @csrf
                     <!-- CONTENIDO DE CONFIGURACIÓN -->
                     <div class="container mt-3" id="configuracionDiv">
                         <div class="row mb-4">
@@ -58,10 +58,32 @@
                             </div>
                         </div>
                     </div>
-    
-                    <!-- CONTENIDO DE PREGUNTAS -->
-                    <div class="container mt-5" id="preguntasDiv" style="display: none;">
+
+                    <!-- CONTENIDO DE PARAMETRIZACIÓN -->
+                    <div class="container mt-3" id="parametrizacionDiv" style="display: none;">
+                        <p>Seleccione un criterio para su sondeo vaya dirigirdo a cierto perfil de ciudadanos, sólo sí su sondeo lo requiere.</p>
+
+                        <div class="col-10">
+                            <div class="input-group mb-3">
+                                <select name="idCriterio" id="idCriterio" class="form-select">
+                                    @foreach($criterios as $criterio)
+                                        <option value="{{$criterio->idCriterio}}">{{$criterio->nombre}}</option>                                       
+                                    @endforeach
+                                </select>
+                                <button type="button" id="btnCrearTema" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearCriterioModal">Nuevo</button>
+                            </div>
+                        </div>
+
+                        <p>De otra forma deje la opción por defecto "0. No Aplica".</p>
+                    </div>
+                </form>
+
+                <!-- CONTENIDO DE PREGUNTAS -->
+                <form class="p-3" action="" method="POST">
+                    <div class="container mt-1" id="preguntasDiv" style="display: none;">
                         <div id="preguntasContainer">
+                            <p>Preguntas que desea realizar por medio del sondeo</p>
+                            
 
                         </div>
                     
@@ -70,21 +92,7 @@
                                 <button type="button" id="btnCrearPregunta" class="btn btn-primary" onclick="crearPregunta()">Agregar Pregunta</button>
                             </div>
                         </div>
-                    </div>
     
-                    <!-- CONTENIDO DE PARAMETRIZACIÓN -->
-                    <div class="container mt-5" id="parametrizacionDiv" style="display: none;">
-                        <div class="row mb-4">
-                            <div class="col">
-                                <label for="parametro1">Parámetro 1</label>
-                                <input type="text" name="parametro1" id="parametro1" class="form-control">
-                            </div>
-                            <div class="col">
-                                <label for="parametro2">Parámetro 2</label>
-                                <input type="text" name="parametro2" id="parametro2" class="form-control">
-                            </div>
-                        </div>
-
                         <!-- Botón para guardar el formulario -->
                         <div class="row mt-4 mb-3 text-center">
                             <div class="col">
@@ -92,8 +100,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -135,7 +143,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="crearPreguntaForm" action="{{ route('preguntas.store') }}" method="POST">
+                    <form id="crearPreguntaForm" action="" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="descripcionPregunta" class="form-label">Pregunta:</label>
