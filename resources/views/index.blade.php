@@ -54,10 +54,78 @@
                     </div>
                 </div>
             </nav>
+            {{-- Collapse down filters --}}
+            <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
+                <div class="bg-secondary p-4">
+                    <h1 class="text-body-emphasis h4 mb-4">Filtrar Por:</h1>
+            
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckFecha">
+                        <label class="form-check-label me-2" for="flexSwitchCheckFecha">Fecha</label>
+                        <input type="datetime-local" id="fecha">
+                    </div>
+            
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckSexo">
+                        <label class="form-check-label me-2" for="flexSwitchCheckSexo">Sexo</label>
+                        <select class="form-select" id="sexo">
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
+                        </select>
+                    </div>
+            
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckEtnia">
+                        <label class="form-check-label me-2" for="flexSwitchCheckEtnia">Etnia</label>
+                        <select class="form-select" id="etnia">
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                        </select>
+                    </div>
+            
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckEdad">
+                        <label class="form-check-label me-2" for="flexSwitchCheckEdad">Edad</label>
+                        <input type="number" class="form-control" id="edad">
+                    </div>
+            
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckEstrato">
+                        <label class="form-check-label me-2" for="flexSwitchCheckEstrato">Estrato</label>
+                        <select class="form-select" id="estrato">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+            
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDiscapacidad">
+                        <label class="form-check-label me-2" for="flexSwitchCheckDiscapacidad">Discapacidad</label>
+                        <select class="form-select" id="discapacidad">
+                            <option value="Down">1</option>
+                            <option value="Otra">2</option>
+                        </select>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckNivelEducacion">
+                        <label class="form-check-label me-2" for="flexSwitchCheckDiscapacidad">Nivel de educación</label>
+                        <select class="form-select" id="discapacidad">
+                            <option value="Down">1</option>
+                            <option value="Otra">2</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </section>
 
-    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
     </script>
