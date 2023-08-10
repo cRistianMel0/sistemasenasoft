@@ -58,13 +58,13 @@
             <div class="collapse" id="navbarToggleExternalContent" data-bs-theme="dark">
                 <div class="bg-secondary p-4">
                     <h1 class="text-body-emphasis h4 mb-4">Filtrar Por:</h1>
-            
+
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckFecha">
                         <label class="form-check-label me-2" for="flexSwitchCheckFecha">Fecha</label>
                         <input type="datetime-local" id="fecha">
                     </div>
-            
+
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckSexo">
                         <label class="form-check-label me-2" for="flexSwitchCheckSexo">Sexo</label>
@@ -73,7 +73,7 @@
                             <option value="Femenino">Femenino</option>
                         </select>
                     </div>
-            
+
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckEtnia">
                         <label class="form-check-label me-2" for="flexSwitchCheckEtnia">Etnia</label>
@@ -83,13 +83,13 @@
                             <option value="">3</option>
                         </select>
                     </div>
-            
+
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckEdad">
                         <label class="form-check-label me-2" for="flexSwitchCheckEdad">Edad</label>
                         <input type="number" class="form-control" id="edad">
                     </div>
-            
+
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckEstrato">
                         <label class="form-check-label me-2" for="flexSwitchCheckEstrato">Estrato</label>
@@ -102,9 +102,10 @@
                             <option value="6">6</option>
                         </select>
                     </div>
-            
+
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDiscapacidad">
+                        <input class="form-check-input" type="checkbox" role="switch"
+                            id="flexSwitchCheckDiscapacidad">
                         <label class="form-check-label me-2" for="flexSwitchCheckDiscapacidad">Discapacidad</label>
                         <select class="form-select" id="discapacidad">
                             <option value="Down">1</option>
@@ -113,8 +114,10 @@
                     </div>
 
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckNivelEducacion">
-                        <label class="form-check-label me-2" for="flexSwitchCheckDiscapacidad">Nivel de educación</label>
+                        <input class="form-check-input" type="checkbox" role="switch"
+                            id="flexSwitchCheckNivelEducacion">
+                        <label class="form-check-label me-2" for="flexSwitchCheckDiscapacidad">Nivel de
+                            educación</label>
                         <select class="form-select" id="discapacidad">
                             <option value="Down">1</option>
                             <option value="Otra">2</option>
@@ -122,7 +125,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
     </section>
 
@@ -133,6 +136,40 @@
         </div>
     </section>
 
+    <section id="sondeos" class="row row-gap-3 d-flex flex-column justify-content-center align-items-center">
+        <h2 class="text-center">Sondeos</h2>
+        <div class="row justify-content-center gap-4">
+            @php
+                $contador = 0;
+                $sondeosAleatorios = $sondeos->shuffle();
+            @endphp
+    
+            @foreach ($sondeosAleatorios as $sondeo)
+                @if ($contador < 6)
+                    <div class="col-ms-12 col-md-4 col-xxl-3">
+                        <div class="card">
+                            <img src="{{ $sondeo->imagen }}" class="card-img-top" alt="Imagen del sondeo">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $sondeo->titulo }}</h5>
+                                <p class="card-text">{{ $sondeo->descripcion }}</p>
+                                <a href="#" class="btn btn-primary">Contestar</a>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+    
+                @php
+                    $contador++;
+                @endphp
+            @endforeach
+        </div>
+        @if (count($sondeos) > 6)
+            <div class="d-flex flex-column justify-content-center align-items-center mt-3">
+                <button type="button" class="btn btn-primary">Ver más sondeos</button>
+            </div>
+        @endif
+    </section>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
     </script>
