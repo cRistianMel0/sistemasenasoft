@@ -43,8 +43,12 @@
                             <button class="btn btn-sm btn-outline-secondary me-2" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent"
                                 aria-expanded="false"><i class="bi bi-toggles"></i></button>
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success me-2" type="submit">Search</button>
+                            <input class="smallSearchBar me-2" id="smallSearchBar" type="search"
+                                placeholder="¿Que buscas?" aria-label="Search">
+                            <input class="form-control extendedSearchBar me-2" id="extendedSearchBar" type="search" style="display: none; width: 1500px;"
+                                placeholder="¿Que buscas?" aria-label="Search">
+                            <button class="btn btn-outline-success me-2" type="submit"><i
+                                    class="bi bi-search"></i></button>
                             <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
                                 aria-label="Toggle navigation">
@@ -143,7 +147,7 @@
                 $contador = 0;
                 $sondeosAleatorios = $sondeos->shuffle();
             @endphp
-    
+
             @foreach ($sondeosAleatorios as $sondeo)
                 @if ($contador < 6)
                     <div class="col-ms-12 col-md-4 col-xxl-3">
@@ -157,7 +161,7 @@
                         </div>
                     </div>
                 @endif
-    
+
                 @php
                     $contador++;
                 @endphp
@@ -169,7 +173,31 @@
             </div>
         @endif
     </section>
-    
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <script>
+        var ocultar = document.getElementById("extendedSearchBar");
+
+        $(document).ready(function() {
+            // Manejar el cambio en todos los radio buttons
+            $('#smallSearchBar').on('focus', function() {
+
+                $('#extendedSearchBar').fadeIn();
+
+            });
+            window.onclick=function(event){
+                if(event.target==ocultar){
+                    ocultar.style.display='none';
+                }
+            }
+        });
+    </script>
+
+    <script></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
     </script>
