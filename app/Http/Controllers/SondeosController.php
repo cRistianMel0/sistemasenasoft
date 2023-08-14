@@ -38,6 +38,8 @@ class SondeosController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'idTema' => 'required',
+            'idCriterio' => 'required', 
             'titulo' => 'required',
             'descripcion' => 'required',
             'resultado' => 'required',

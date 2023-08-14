@@ -47,8 +47,51 @@ $(document).ready(function () {
         }
     );
 
+    // CONTENIDO PARAMETRIZACIÓN
+    // Función para permitir el registro del valor 2 en criterios
+    const valor2Div = getElementById('valor2Div');
+    const valor2Criterio = getElementById('valor2Criterio');
+
+    $('#siRadio').click(function () {
+        if (siRadio.is(':checked')) {
+            valor2Div.show();
+            valor2Criterio.prop('required', true);
+        }
+    });
+
+    $('#noRadio').click(function () {
+        if (noRadio.is(':checked')) {
+            valor2Div.hide();
+            valor2Criterio.prop('required', false);
+        }
+    });
+
 
     // CONTENIDO PREGUNTAS
+    // Función para crear una pregunta
+    $('#btnCrearPregunta').click(
+        function crearPregunta() {
+            $.ajax({
+                url: "{{ route('preguntas.store') }}",
+                method: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    nombreTema: $('#descripcionPregunta').val(),
+                    descripcionTema: $('#descripcionTema').val()
+                },
+                success: function (response) {
+                    console.log(response);
+                    // Cerrar el modal después de crear el tema
+                    $('#crearTemaModal').modal('hide');
+                },
+                error: function (error) {
+                    // Manejo del error
+                    console.log(error);
+                }
+            });
+        }
+    );
+
     // Función para crear una pregunta
     $('#btnCrearPregunta').click(function () {
         // Mostrar el modal cuando se haga clic en el botón
@@ -106,9 +149,8 @@ $(document).ready(function () {
                 </div>
                 `
             } else {
-                alert("No ha seleccionado un tipo de pregunta válido")
+                alert("No ha seleccionado un tipo de pregunta válido");
             }
-
         }
     );
     
@@ -120,7 +162,7 @@ $(document).ready(function () {
 
             if (res) {
                 // Guardar sondeo con metodo store
-                alert("Sondeo publicado")
+                alert("Sondeo publicado");
             } else {
                 // Evitar llamar al metodo store para no guardar el sondeo
             }

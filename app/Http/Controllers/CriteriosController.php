@@ -31,18 +31,18 @@ class CriteriosController extends Controller
     {
         // Validar los datos del formulario
         $request->validate([
-            'nombre' => 'required|string',
-            'condicion' => 'required|string',
-            'valor1' => 'required',
-            'valor2' => 'nullable',
+            'nombreCriterio' => 'required|string',
+            'condicionCriterio' => 'required|string',
+            'valor1Criterio' => 'required',
+            'valor2Criterio' => 'nullable',
         ]);
 
         // Crear el registro del criterio
         $criterio = Criterio::create([
-            'nombre' => $request->input('nombre'),
-            'condicion' => $request->input('condicion'),
-            'valor1' => $request->input('valor1'),
-            'valor2' => $request->input('valor2'),
+            'nombre' => $request->input('nombreCriterio'),
+            'condicion' => $request->input('condicionCriterio'),
+            'valor1' => $request->input('valor1Criterio'),
+            'valor2' => $request->input('valor2Criterio'),
         ]);
 
         return redirect()->back();

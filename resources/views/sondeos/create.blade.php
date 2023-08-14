@@ -61,7 +61,7 @@
 
                     <!-- CONTENIDO DE PARAMETRIZACIÓN -->
                     <div class="container mt-3" id="parametrizacionDiv" style="display: none;">
-                        <p>Seleccione un criterio para su sondeo vaya dirigirdo a cierto perfil de ciudadanos, sólo sí su sondeo lo requiere.</p>
+                        <p>Seleccione un criterio para que su sondeo vaya dirigirdo a cierto perfil de ciudadanos, sólo sí su sondeo lo requiere.</p>
 
                         <div class="col-10">
                             <div class="input-group mb-3">
@@ -70,7 +70,7 @@
                                         <option value="{{$criterio->idCriterio}}">{{$criterio->nombre}}</option>                                       
                                     @endforeach
                                 </select>
-                                <button type="button" id="btnCrearTema" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearCriterioModal">Nuevo</button>
+                                <button type="button" id="btnCrearCriterio" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearCriterioModal">Nuevo</button>
                             </div>
                         </div>
 
@@ -127,6 +127,54 @@
                         </div>
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary">Guardar Tema</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para crear un nuevo criterio -->
+    <div class="modal fade" id="crearCriterioModal" tabindex="-1" aria-labelledby="crearCriterioModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="crearCriterioModalLabel">Nuevo Criterio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="crearCriterioForm" action="{{ route('criterios.store') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="nombreCriterio" class="form-label">Nombre para el Criterio:</label>
+                            <input type="text" class="form-control" id="nombreCriterio" name="nombreCriterio" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="condicionCriterio" class="form-label">Condición:</label>
+                            <input type="text" class="form-control" id="condicionCriterio" name="condicionCriterio" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="valor1Criterio" class="form-label">Valor 1:</label>
+                            <input type="text" class="form-control" id="valor1Criterio" name="valor1Criterio" required>
+                        </div>
+                        
+                        {{-- Agregar un segundo valor a la condición del criterio a crear --}}
+                        {{-- <p>¿Desea agregar un segundo valor para la condición del criterio?</p>
+                        <div class="mb-3">
+                            <label for="siRadio">Si</label>
+                            <input type="radio" name="opcionRadio" id="siRadio" value="si">
+                            
+                            <label for="noRadio">No</label>
+                            <input type="radio" name="opcionRadio" id="noRadio" value="no">
+                        </div>
+                        
+                        <div id="valor2Div" class="mb-3" style="display: none">
+                            <label for="valor2Criterio" class="form-label">Valor 2:</label>
+                            <input type="text" class="form-control" id="valor2Criterio" name="valor2Criterio">
+                        </div> --}}
+
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">Guardar Criterio</button>
                         </div>
                     </form>
                 </div>

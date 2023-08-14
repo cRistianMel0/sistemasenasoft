@@ -28,7 +28,7 @@ Route::get('index', 'SondeosController@index')->name('index');
 
 
 // RUTAS CRITERIOS
-Route::post('criterios/store', 'CriterioController@store')->name('criterios.store');
+Route::post('criterios/store', 'CriteriosController@store')->name('criterios.store');
 
 // RUTAS TEMAS
 Route::post('temas/store', 'TemasController@store')->name('temas.store');
