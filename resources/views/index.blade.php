@@ -52,7 +52,7 @@
                                     style="display: none" placeholder="¿Qué buscas?" aria-label="Search">
                             </div>
                             <button class="btn btn-outline-success ms-2 me-2 searchButton" id="searchButton"
-                                type="button"><i class="bi bi-search"></i></button>
+                                type="button" ><i class="bi bi-search"></i></button>
                             <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
                                 aria-label="Toggle navigation">
@@ -71,15 +71,13 @@
                     <h1 class="text-body-emphasis h4 mb-4">Filtrar Por:</h1>
 
                     <div class="form-check form-switch mb-3 d-flex">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckFecha"
-                            value="1">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckFecha">
                         <label class="form-check-label ms-1" for="flexSwitchCheckFecha">Fecha</label>
                         <input type="datetime-local" id="fecha">
                     </div>
                     <div>
                         <div class="form-check form-switch mb-3 d-flex">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckSexo"
-                                value="2">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckSexo">
                             <label class="form-check-label ms-1" for="flexSwitchCheckSexo">Sexo</label>
                         </div>
 
@@ -94,8 +92,8 @@
 
                     <div>
                         <div class="form-check form-switch mb-3 d-flex">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckEtnia"
-                               >
+                            <input class="form-check-input" type="checkbox" role="switch"
+                                id="flexSwitchCheckEtnia">
                             <label class="form-check-label ms-1" for="flexSwitchCheckEtnia">Etnia</label>
                         </div>
                         <div>
@@ -111,8 +109,7 @@
 
                     <div>
                         <div class="form-check form-switch mb-3 d-flex">
-                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckEdad"
-                                value="true">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckEdad">
                             <label class="form-check-label ms-1" for="flexSwitchCheckEdad">Edad</label>
                         </div>
                         <div>
@@ -124,7 +121,7 @@
                     <div>
                         <div class="form-check form-switch mb-3 d-flex">
                             <input class="form-check-input" type="checkbox" role="switch"
-                                id="flexSwitchCheckEstrato" value="5">
+                                id="flexSwitchCheckEstrato">
                             <label class="form-check-label ms-1" for="flexSwitchCheckEstrato">Estrato</label>
                         </div>
 
@@ -143,7 +140,7 @@
 
                     <div>
                         <div class="form-check form-switch mb-3 d-flex">
-                            <input class="form-check-input" type="checkbox" role="switch" value="6"
+                            <input class="form-check-input" type="checkbox" role="switch"
                                 id="flexSwitchChecDiscapacidad">
                             <label class="form-check-label ms-1"
                                 for="flexSwitchCheckDiscapacidad">Discapacidad</label>
@@ -160,8 +157,8 @@
 
                     <div>
                         <div class="form-check form-switch mb-3">
-                            <input class="form-check-input" type="checkbox" role="switch"
-                                id="flexSwitchCheckNivelEducacion" value="7">
+                            <input class="form-check-input" type="checkbox"
+                                role="switch"id="flexSwitchCheckNivelEducacion">
                             <label class="form-check-label" for="flexSwitchCheckDiscapacidad">Nivel educación</label>
                         </div>
                         <div>
@@ -260,10 +257,13 @@
         var selectedValues = [];
 
         buscar.addEventListener('click', function() {
-            selectedValues = [];
+            selectedValues = {}; // Vaciamos el objeto cada vez que se hace clic en el botón
             checks.forEach((element) => {
-                selectedValues.push(element.value); 
+                if (element.checked) {
+                    selectedValues[element.id] = element.value; // Usamos el ID del elemento como nombre de propiedad en el objeto
+                }
             });
+            console.log(selectedValues); // Mostramos los valores seleccionados en la consola     
         });
     </script>
 
