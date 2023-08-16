@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Sondeo;
 use App\Models\Tema;
+use App\Models\Criterio;
 
 use Carbon\Carbon; // Facilita el trabajo entre fechas
 
@@ -26,7 +27,9 @@ class SondeosController extends Controller
     {
         $temas = Tema::orderBy('nombre', 'ASC')->get();
 
-        return view('sondeos/create', ['temas'=>$temas]);
+        $criterios = Criterio::orderBy('nombre', 'ASC')->get();
+
+        return view('sondeos/create', ['temas'=>$temas], ['criterios'=>$criterios]);
     }
 
     /**
@@ -35,6 +38,8 @@ class SondeosController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'idTema' => 'required',
+            'idCriterio' => 'required', 
             'titulo' => 'required',
             'descripcion' => 'required',
             'resultado' => 'required',

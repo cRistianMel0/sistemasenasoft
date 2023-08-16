@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tema extends Model
+class Criterio extends Model
 {
-    protected $fillable = [
+    protected $fillable=[
         'nombre',
-        'descripcion'
+        'condicion',
+        'valor1',
+        'valor2'
     ];
 
-    protected $primaryKey='idTema';
+    protected $primaryKey = 'idCriterio';
 }
