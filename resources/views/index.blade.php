@@ -52,7 +52,7 @@
                                     style="display: none" placeholder="¿Qué buscas?" aria-label="Search">
                             </div>
                             <button class="btn btn-outline-success ms-2 me-2 searchButton" id="searchButton"
-                                type="button" ><i class="bi bi-search"></i></button>
+                                type="button"><i class="bi bi-search"></i></button>
                             <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="offcanvas"
                                 data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
                                 aria-label="Toggle navigation">
@@ -71,9 +71,10 @@
                     <h1 class="text-body-emphasis h4 mb-4">Filtrar Por:</h1>
 
                     <div class="form-check form-switch mb-3 d-flex">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckFecha">
-                        <label class="form-check-label ms-1" for="flexSwitchCheckFecha">Fecha</label>
-                        <input type="datetime-local" id="fecha">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckFecha"
+                            onchange="toggleDropdown">
+                        <label class="form-check-label ms-1 filterInput" for="flexSwitchCheckFecha">Fecha</label>
+                        <input type="datetime-local" id="fecha" disabled>
                     </div>
                     <div>
                         <div class="form-check form-switch mb-3 d-flex">
@@ -84,6 +85,7 @@
                         <div>
                             <select class="form-select filterInput" id="sexo"
                                 style="margin-top:-15px; margin-bottom: 15px">
+                                <option value="" disabled selected></option>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
                             </select>
@@ -99,6 +101,7 @@
                         <div>
                             <select class="form-select filterInput" id="etnia"
                                 style="margin-top:-15px; margin-bottom: 15px">>
+                                <option value="" disabled selected></option>
                                 <option value="e1">1</option>
                                 <option value="e2">2</option>
                                 <option value="e3">3</option>
@@ -112,10 +115,12 @@
                             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckEdad">
                             <label class="form-check-label ms-1" for="flexSwitchCheckEdad">Edad</label>
                         </div>
-                        <div>
-                            <input type="number" class="form-control input" id="edad"
-                                style="margin-top:-15px; margin-bottom: 15px">
-                        </div>
+                        <select class="form-select filterInput" id="edad"
+                            style="margin-top:-15px; margin-bottom: 15px">>
+                            <option value="" disabled selected></option>
+                            <option value="e1"> < 18 </option>
+                            <option value="e2"> > 18</option>
+                        </select>
                     </div>
 
                     <div>
@@ -128,6 +133,7 @@
                         <div>
                             <select class="form-select filterInput" id="estrato"
                                 style="margin-top:-15px; margin-bottom: 15px">
+                                <option value="" disabled selected></option>
                                 <option value="es1">1</option>
                                 <option value="es2">2</option>
                                 <option value="es3">3</option>
@@ -149,6 +155,7 @@
                         <div>
                             <select class="form-select filterInput" id="discapacidad"
                                 style="margin-top:-15px; margin-bottom: 15px">
+                                <option value="" disabled selected></option>
                                 <option value="Down">1</option>
                                 <option value="Otra">2</option>
                             </select>
@@ -164,6 +171,7 @@
                         <div>
                             <select class="form-select filterInput" id="discapacidad"
                                 style="margin-top:-15px; margin-bottom: 15px">
+                                <option value="" disabled selected></option>
                                 <option value="Down">1</option>
                                 <option value="Otra">2</option>
                             </select>
@@ -252,20 +260,55 @@
     </script> --}}
 
     <script>
-        var buscar = document.getElementById('searchButton');
-        var checks = document.querySelectorAll('.form-check-input');
-        var selectedValues = [];
+        var edad = document.getElementById('')
+    </script>
 
-        buscar.addEventListener('click', function() {
-            selectedValues = {}; // Vaciamos el objeto cada vez que se hace clic en el botón
-            checks.forEach((element) => {
-                if (element.checked) {
-                    selectedValues[element.id] = element.value; // Usamos el ID del elemento como nombre de propiedad en el objeto
-                }
+    <script>
+        function toggleDropdown() {
+            var flexSwitchChecks = document.querySelectorAll('.form-check-input');
+            var filterInputs = document.querySelectorAll('.filterInput');
+
+            flexSwitchChecks.forEach(function(checkbox, index) {
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+
+                        filterInputs[index].disabled = false;
+                        filterInputs[index].classList.remove('disabled-dropdown');
+                    } else {
+                        filterInputs[index].disabled = true;
+                        filterInputs[index].classList.add('disabled-dropdown');
+                    }
+
+                    if (checkbox.id === 'flexSwitchCheckFecha') {
+                        var fechaInput = document.getElementById('fecha');
+                        fechaInput.disabled = !this.checked;
+                    }
+                });
             });
-            console.log(selectedValues); // Mostramos los valores seleccionados en la consola     
+        }
+
+        // Llama a la función al cargar la página para configurar el comportamiento inicial
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleDropdown();
         });
     </script>
+
+    <script>
+        function disableAllFilterInputs() {
+            var filterInputs = document.querySelectorAll('.filterInput');
+
+            filterInputs.forEach(function(input) {
+                input.disabled = true;
+                input.classList.add('disabled-dropdown');
+            });
+        }
+
+        // Llama a la función al cargar la página para deshabilitar los inputs
+        document.addEventListener('DOMContentLoaded', function() {
+            disableAllFilterInputs();
+        });
+    </script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">

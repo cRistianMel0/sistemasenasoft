@@ -25,3 +25,6 @@ Route::get('/', function () {
 
 
 Route::get('index', 'SondeosController@index')->name('index');
+Route::post('filtrarSondeos', 'CriteriosController@index')->name('filtrarSondeos');
+
+

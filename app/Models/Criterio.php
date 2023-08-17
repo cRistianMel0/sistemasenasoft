@@ -8,10 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Criterio extends Model
 {
     protected $fillable=[
-        'nombre',
-        'condicion',
-        'valor1',
-        'valor2'
+        'fechaInicio',
+        'fecha',
+        'sexo',
+        'etnia',
+        'edad',
+        'estrato',
+        'discapacidad',
+        'nivelEducativo'
     ];
 
     protected $primaryKey = 'idCriterio';

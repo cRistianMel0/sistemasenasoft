@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Criterio;
 use Illuminate\Http\Request;
 use App\Models\Sondeo;
 
@@ -12,7 +13,7 @@ class CriteriosController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
