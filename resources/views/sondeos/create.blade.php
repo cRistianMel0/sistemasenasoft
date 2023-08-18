@@ -40,23 +40,27 @@
                             </div>                            
                             <div class="col">
                                 <label for="titulo">Título Sondeo</label>
-                                <input type="text" name="titulo" id="titulo" class="form-control">
+                                <input type="text" name="titulo" id="titulo" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="row mb-5">
                             <div class="col">
                                 <label for="fechaHoraInicio">Fecha y hora de inicio</label>
-                                <input type="datetime-local" name="fechaHoraInicio" id="fechaHoraInicio" class="form-control">
+                                <input type="datetime-local" name="fechaHoraInicio" id="fechaHoraInicio" class="form-control" required>
                             </div>
                             <div class="col">
                                 <label for="fechaHoraFin">Fecha y hora de fin</label>
-                                <input type="datetime-local" name="fechaHoraFin" id="fechaHoraFin" class="form-control">
+                                <input type="datetime-local" name="fechaHoraFin" id="fechaHoraFin" class="form-control" required>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col d-flex justify-content-center">
+                            <div class="col ">
+                                <label for="descripcion" class="form-label">Descripción del Sondeo</label>
+                                <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
+                            </div>
+                            <div class="col d-flex justify-content-center align-items-center">
                                 <label for="imagen">Imagen</label>
                                 <input type="file" name="imagen" id="imagen" class="form-control-file">
                             </div>

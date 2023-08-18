@@ -53,7 +53,7 @@ class SondeosController extends Controller
             'idTema' => 'required',
             'idCriterio' => 'required', 
             'titulo' => 'required',
-            'descripcion' => 'nullable',
+            'descripcion' => 'required',
             'resultado' => 'nullable',
             'fechaHoraInicio' => 'required|date|after_or_equal:' . Carbon::now(),
             'fechaHoraFin' => 'required|date|after_or_equal:fechaHoraInicio',
