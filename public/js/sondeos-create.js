@@ -10,87 +10,61 @@ $(document).ready(function () {
 
     // Agregar eventos para cada botón
     $('#btnConfiguracion').click(function () {
-    showDiv('configuracionDiv', 'btnConfiguracion');
-    });
-
-    $('#btnPreguntas').click(function () {
-    showDiv('preguntasDiv', 'btnPreguntas');
+        showDiv('configuracionDiv', 'btnConfiguracion');
     });
 
     $('#btnParametrizacion').click(function () {
-    showDiv('parametrizacionDiv', 'btnParametrizacion');
+        showDiv('parametrizacionDiv', 'btnParametrizacion');
+    });
+
+    $('#btnPreguntas').click(function () {
+        showDiv('preguntasDiv', 'btnPreguntas');
     });
 
 
-    // CONTENIDO TEMAS
-    // Función para agregar un nuevo tema
-    $('#btnCrearTema').click(
-        function crearTema() {
-            $.ajax({
-                url: "{{ route('temas.store') }}",
-                method: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    nombreTema: $('#nombreTema').val(),
-                    descripcionTema: $('#descripcionTema').val()
-                },
-                success: function (response) {
-                    console.log(response);
-                    // Cerrar el modal después de crear el tema
-                    $('#crearTemaModal').modal('hide');
-                },
-                error: function (error) {
-                    // Manejo del error
-                    console.log(error);
-                }
-            });
-        }
-    );
+    // Función para pasar al div de preguntas y deshabilitar los otros div
+    // const btnConfiguracion = getElementById('btnConfiguracion');
+    // const btnParametrizacion = getElementById('btnParametrizacion');
+    // const btnPreguntas = getElementById('btnPreguntas');
 
-    // CONTENIDO PARAMETRIZACIÓN
-    // Función para permitir el registro del valor 2 en criterios
-    const valor2Div = getElementById('valor2Div');
-    const valor2Criterio = getElementById('valor2Criterio');
+    // $('#btnSiguiente').click(
+    //     function mostrarPreguntasDiv() {
+    //         res = alert("¿Desea ir a la sección de creación de preguntas? Asegúrese de haber modficado correctamente el sondeo antes de pasar a la sección de preguntas")
+            
+    //         if (res) {
+    //             showDiv('preguntasDiv', 'btnPreguntas');
 
-    $('#siRadio').click(function () {
-        if (siRadio.is(':checked')) {
-            valor2Div.show();
-            valor2Criterio.prop('required', true);
-        }
-    });
-
-    $('#noRadio').click(function () {
-        if (noRadio.is(':checked')) {
-            valor2Div.hide();
-            valor2Criterio.prop('required', false);
-        }
-    });
-
+    //             btnConfiguracion.disabled;
+    //             btnParametrizacion.disabled;
+    //             btnPreguntas.enabled;
+    //         }
+    //     }
+    // )
 
     // CONTENIDO PREGUNTAS
     // Función para crear una pregunta
-    $('#btnCrearPregunta').click(
-        function crearPregunta() {
-            $.ajax({
-                url: "{{ route('preguntas.store') }}",
-                method: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    nombreTema: $('#descripcionPregunta').val(),
-                    descripcionTema: $('#descripcionTema').val()
-                },
-                success: function (response) {
-                    console.log(response);
-                    // Cerrar el modal después de crear el tema
-                    $('#crearTemaModal').modal('hide');
-                },
-                error: function (error) {
-                    // Manejo del error
-                    console.log(error);
-                }
-            });
-        }
-    );
+    // $('#btnCrearPregunta').click(
+    //     function crearPregunta() {
+    //         $.ajax({
+    //             url: "{{ route('preguntas.store') }}",
+    //             method: "POST",
+    //             data: {
+    //                 _token: "{{ csrf_token() }}",
+    //                 nombreTema: $('#descripcionPregunta').val(),
+    //                 descripcionTema: $('#descripcionTema').val()
+    //             },
+    //             success: function (response) {
+    //                 console.log(response);
+    //                 // Cerrar el modal después de crear el tema
+    //                 $('#crearTemaModal').modal('hide');
+    //             },
+    //             error: function (error) {
+    //                 // Manejo del error
+    //                 console.log(error);
+    //             }
+    //         });
+    //     }
+    // );
 
     // Función para crear una pregunta
     $('#btnCrearPregunta').click(function () {

@@ -27,7 +27,9 @@ class PreguntasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+
+        return redirect()->route('index')->with('success', 'Sondeo creado exitosamente.');
     }
 
     /**

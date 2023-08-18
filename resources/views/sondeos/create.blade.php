@@ -13,7 +13,7 @@
         <div class="d-flex">
             <button id="btnConfiguracion" class="btn btn-outline-secondary rounded-3 rounded-bottom-0 btn-active">Configuración</button>
             <button id="btnParametrizacion" class="btn btn-outline-secondary rounded-3 rounded-bottom-0">Parametrización</button>   
-            <button id="btnPreguntas" class="btn btn-outline-secondary rounded-3 rounded-bottom-0">Preguntas</button>
+            <button id="btnPreguntas" class="btn btn-outline-secondary rounded-3 rounded-bottom-0" disabled>Preguntas</button>
         </div>
 
         <div class="bg-white mb-4 border rounded-bottom-3 border-secondary-subtle">
@@ -22,6 +22,8 @@
                     @csrf
                     <!-- CONTENIDO DE CONFIGURACIÓN -->
                     <div class="container mt-3" id="configuracionDiv">
+                        <input type="hidden" name="idAdministrador" value="{{$administrador->idAdministrador}}">
+
                         <div class="row mb-4">
                             <div class="col">
                                 <div>
@@ -41,6 +43,7 @@
                                 <input type="text" name="titulo" id="titulo" class="form-control">
                             </div>
                         </div>
+
                         <div class="row mb-5">
                             <div class="col">
                                 <label for="fechaHoraInicio">Fecha y hora de inicio</label>
@@ -51,7 +54,8 @@
                                 <input type="datetime-local" name="fechaHoraFin" id="fechaHoraFin" class="form-control">
                             </div>
                         </div>
-                        <div class="row mb-5">
+
+                        <div class="row">
                             <div class="col d-flex justify-content-center">
                                 <label for="imagen">Imagen</label>
                                 <input type="file" name="imagen" id="imagen" class="form-control-file">
@@ -75,12 +79,28 @@
                         </div>
 
                         <p>De otra forma deje la opción por defecto "0. No Aplica".</p>
+
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">Siguiente</button>
+                        </div>
                     </div>
                 </form>
 
                 <!-- CONTENIDO DE PREGUNTAS -->
                 <form class="p-3" action="" method="POST">
                     <div class="container mt-1" id="preguntasDiv" style="display: none;">
+                        {{-- <div class="row mb-4">
+                            <label for="idSondeo">Sondeo</label>
+
+                            <div class="col-4">
+                                <input type="text" name="titulo" id="titulo" class="form-control" disabled value="{{$sondeo->titulo}}">
+                            </div>
+                            
+                            <div class="col-4">
+                                <input type="text" name="idSondeo" id="idSondeo" class="form-control" disabled value="{{$sondeo->idSondeo}}">
+                            </div>
+                        </div> --}}
+
                         <div id="preguntasContainer">
                             <p>Preguntas que desea realizar por medio del sondeo</p>
                             
@@ -159,7 +179,7 @@
                         </div>
                         
                         {{-- Agregar un segundo valor a la condición del criterio a crear --}}
-                        {{-- <p>¿Desea agregar un segundo valor para la condición del criterio?</p>
+                        <p>¿Desea agregar un segundo valor para la condición del criterio?</p>
                         <div class="mb-3">
                             <label for="siRadio">Si</label>
                             <input type="radio" name="opcionRadio" id="siRadio" value="si">
@@ -171,7 +191,7 @@
                         <div id="valor2Div" class="mb-3" style="display: none">
                             <label for="valor2Criterio" class="form-label">Valor 2:</label>
                             <input type="text" class="form-control" id="valor2Criterio" name="valor2Criterio">
-                        </div> --}}
+                        </div>
 
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary">Guardar Criterio</button>
@@ -216,5 +236,24 @@
 @endsection
 
 @section('scripts')
+    {{-- Función para permitir el registro del valor 2 en criterios --}}
+    <script>
+        $(document).ready(function () {
+            $('#siRadio').click(function () {
+                if ($('#siRadio').is(':checked')) {
+                    $('#valor2Div').show();
+                    $('#valor2Criterio').prop('required', true);
+                }
+            });
+    
+            $('#noRadio').click(function () {
+                if ($('#noRadio').is(':checked')) {
+                    $('#valor2Div').hide();
+                    $('#valor2Criterio').prop('required', false);
+                }
+            });
+        });
+    </script> 
+
     <script src="{{ asset('js/sondeos-create.js') }}"></script>
 @endsection
