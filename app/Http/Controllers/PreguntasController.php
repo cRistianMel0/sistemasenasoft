@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Pregunta;
+use App\Models\Sondeo;
+
 class PreguntasController extends Controller
 {
     /**
@@ -17,9 +20,11 @@ class PreguntasController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($idSondeo)
     {
-        //
+        $sondeo = Sondeo::findOrFail($idSondeo);
+    
+        return view('preguntas.create', ['sondeo' => $sondeo]);
     }
 
     /**

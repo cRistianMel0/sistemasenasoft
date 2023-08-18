@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use DB;
-
 use App\Models\Sondeo;
 use App\Models\Tema;
 use App\Models\Criterio;
@@ -74,7 +72,9 @@ class SondeosController extends Controller
 
         Sondeo::create($data);
 
-        return redirect()->back();
+        $ultimoSondeo = Sondeo::latest('idSondeo')->first();
+
+        return redirect()->route('preguntas.create', ['idSondeo' => $ultimoSondeo->idSondeo]);
     }
 
     /**
