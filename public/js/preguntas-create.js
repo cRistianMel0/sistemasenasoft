@@ -10,7 +10,7 @@ $(document).ready(function () {
 
     // Llamar a la función showDiv para mostrar el contenido de preguntas por defecto
     showDiv('preguntasDiv', 'btnPreguntas');
-    
+
 
     // Función para crear una pregunta
     $('#btnCrearPregunta').click(function () {
@@ -19,7 +19,7 @@ $(document).ready(function () {
 
     // Función para agregar la pregunta creada en el div de preguntas
     // function agregarPregunta(tipoPregunta) {
-    //     if (tipoPregunta == "Texto") {
+    //     if (tipoPregunta == "texto") {
     //         preguntasContainer.innerHTML += `
     //         <div class="row mb-4 pregunta">
     //             <div class="col">
@@ -28,7 +28,7 @@ $(document).ready(function () {
     //             </div>
     //         </div>
     //         `;
-    //     } else if (tipoPregunta == "Opcion Multiple") {
+    //     } else if (tipoPregunta == "opcionMultiple") {
     //         preguntasContainer.innerHTML += `
     //         <div class="row mb-4 pregunta">
     //             <div class="col">
@@ -36,7 +36,7 @@ $(document).ready(function () {
     //             </div>
     //         </div>
     //         `;
-    //     } else if (tipoPregunta == "Opcion Multiple de unica respuesta") {
+    //     } else if (tipoPregunta == "opcionMultipleUnicaRes") {
     //         preguntasContainer.innerHTML += `
     //         <div class="row mb-4 pregunta">
     //             <div class="col">

@@ -68,8 +68,6 @@ class SondeosController extends Controller
             $data['imagen'] = $imageName;
         }
 
-        // return $data;
-
         Sondeo::create($data);
 
         $ultimoSondeo = Sondeo::latest('idSondeo')->first();

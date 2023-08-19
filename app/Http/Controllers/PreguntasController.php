@@ -32,9 +32,20 @@ class PreguntasController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $idSondeo = $request->input('idSondeo');
+        $descripcion = $request->input('descripcionPregunta');
+        $tipo = $request->input('tipoPregunta');
 
-        return redirect()->route('index')->with('success', 'Sondeo creado exitosamente.');
+        // Crear una nueva instancia de Pregunta
+        $pregunta = new Pregunta();
+        $pregunta->idSondeo = $idSondeo;
+        $pregunta->descripcion = $descripcion;
+        $pregunta->tipo = $tipo;
+        
+        // Guardar la pregunta
+        $pregunta->save();
+
+        return redirect()->route('preguntas.create', ['idSondeo' => $idSondeo]);
     }
 
     /**
