@@ -11,9 +11,9 @@
         <h1>Sondeo</h1>
 
         <div class="d-flex">
-            <button id="btnConfiguracion" class="btn btn-outline-secondary rounded-3 rounded-bottom-0 btn-active" disabled>Configuración</button>
+            <button id="btnConfiguracion" class="btn btn-outline-secondary rounded-3 rounded-bottom-0" disabled>Configuración</button>
             <button id="btnParametrizacion" class="btn btn-outline-secondary rounded-3 rounded-bottom-0" disabled>Parametrización</button>   
-            <button id="btnPreguntas" class="btn btn-outline-secondary rounded-3 rounded-bottom-0">Preguntas</button>
+            <button id="btnPreguntas" class="btn btn-outline-secondary rounded-3 rounded-bottom-0 btn-active">Preguntas</button>
         </div>
 
         <div class="bg-white mb-4 border rounded-bottom-3 border-secondary-subtle">
@@ -92,5 +92,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/sondeos-create.js') }}"></script>
+    <script src="{{ asset('js/preguntas-create.js') }}"></script>
 @endsection
