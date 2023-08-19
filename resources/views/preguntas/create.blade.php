@@ -34,7 +34,7 @@
                         </div> --}}
 
                         <div id="preguntasContainer">
-                            <p>Preguntas que desea realizar por medio del sondeo</p>
+                            <p>Preguntas que deseas realizar por medio del sondeo:</p>
                             
 
                         </div>

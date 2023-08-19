@@ -10,19 +10,12 @@ $(document).ready(function () {
 
     // Llamar a la función showDiv para mostrar el contenido de preguntas por defecto
     showDiv('preguntasDiv', 'btnPreguntas');
-
-    // Función para mostrar automáticamente el contenido de preguntas al cargar la página
-    const preguntasContainer = document.getElementById('preguntasContainer');
-    preguntasContainer.innerHTML = `
-        <p>Preguntas que desea realizar por medio del sondeo</p>
-        <!-- Aquí puedes agregar tus elementos de preguntas -->
-    `;
+    
 
     // Función para crear una pregunta
-    // $('#btnCrearPregunta').click(function () {
-    //     // Mostrar el modal cuando se haga clic en el botón
-    //     $('#crearPreguntaModal').modal('show');
-    // });
+    $('#btnCrearPregunta').click(function () {
+        $('#crearPreguntaModal').modal('show');
+    });
 
     // Función para agregar la pregunta creada en el div de preguntas
     // function agregarPregunta(tipoPregunta) {
