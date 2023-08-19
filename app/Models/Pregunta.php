@@ -14,4 +14,9 @@ class Pregunta extends Model
     ];
 
     protected $primaryKey = 'idPregunta';
+
+    public function sondeo()
+    {
+        return $this->belongsTo(Sondeo::class, 'idSondeo', 'idSondeo');
+    }
 }

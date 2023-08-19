@@ -23,7 +23,9 @@
                     <div id="preguntasContainer">
                         <p>Preguntas que deseas realizar por medio del sondeo:</p>
                         
-
+                        @foreach ($preguntas as $pregunta)
+                            <p><strong>{{ $pregunta->descripcion }}</strong></p>
+                        @endforeach
                     </div>
                 
                     <div class="row mt-3">
@@ -35,7 +37,7 @@
                     <!-- Botón para guardar el formulario -->
                     <div class="row mt-4 mb-3 text-center">
                         <div class="col">
-                            <button type="submit" id="btnPublicarSondeo" class="btn btn-primary">Publicar Sondeo</button>
+                            <button type="submit" id="btnPublicarSondeo" class="btn btn-success">Publicar Sondeo</button>
                         </div>
                     </div>
                 </div>

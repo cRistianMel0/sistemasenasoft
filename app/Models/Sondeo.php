@@ -20,4 +20,10 @@ class Sondeo extends Model
     ];
 
     protected $primaryKey='idSondeo';
+
+    public function preguntas()
+    {
+        return $this->hasMany(Pregunta::class, 'idSondeo', 'idSondeo');
+    }
 }
+

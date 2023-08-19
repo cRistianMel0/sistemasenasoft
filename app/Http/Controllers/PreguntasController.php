@@ -23,8 +23,12 @@ class PreguntasController extends Controller
     public function create($idSondeo)
     {
         $sondeo = Sondeo::findOrFail($idSondeo);
+        $preguntas = $sondeo->preguntas; // Recuperar las preguntas asociadas al sondeo
     
-        return view('preguntas.create', ['sondeo' => $sondeo]);
+        return view('preguntas.create', [
+            'sondeo' => $sondeo,
+            'preguntas' => $preguntas
+        ]);
     }
 
     /**
