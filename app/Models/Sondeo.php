@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sondeo extends Model
 {
-    protected $fillable=[
+    protected $fillable = [
         'idSondeo',
         'idAdministrador',
         'idTema',
@@ -19,5 +19,10 @@ class Sondeo extends Model
         'imagen'
     ];
 
-    protected $primaryKey='idSondeo';
+    protected $primaryKey = 'idSondeo';
+    public function criterio()
+    {
+        return $this->belongsTo(Criterio::class, 'idCriterio');
+    }
+
 }

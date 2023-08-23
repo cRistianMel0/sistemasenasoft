@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Models\Sondeo;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 
 /*
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
     $sondeos = Sondeo::all();
         
     return view('index', ['sondeos'=>$sondeos]);
@@ -24,7 +25,11 @@ Route::get('/', function () {
 
 
 
-Route::get('index', 'SondeosController@index')->name('index');
-Route::post('filtrarSondeos', 'CriteriosController@index')->name('filtrarSondeos');
+Route::get('/', 'SondeosController@index')->name('index');
+Route::get('index','SondeosController@mostrarVistaSondeos')->name('sondeos.mostrarVistaSondeos');
+Route::get('sondeos.index', 'CriteriosController@index')->name('sondeos.index');
+/* Route::get('/', 'SondeosController@buscarSondeosAjax')->name('buscar.sondeos.ajax'); */
+
+
 
 

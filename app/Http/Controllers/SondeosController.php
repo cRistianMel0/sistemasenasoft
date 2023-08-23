@@ -3,16 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Sondeos;
+use App\Models\Sondeo;
 
 class SondeosController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+    
+
+    public function index( )
     {
-        //
+        $sondeos = Sondeo::all();
+        return view('index', ['sondeos' => $sondeos]);
+    }
+
+    public function mostrarVistaSondeos()
+    {
+        $sondeos = Sondeo::all();
+        return view('sondeos.index', ['sondeos' => $sondeos]);
     }
 
     /**
@@ -20,7 +30,7 @@ class SondeosController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Criterio extends Model
 {
-    protected $fillable=[
+    protected $fillable = [
         'fechaInicio',
         'fecha',
         'sexo',
@@ -19,4 +19,8 @@ class Criterio extends Model
     ];
 
     protected $primaryKey = 'idCriterio';
+    public function sondeos()
+    {
+        return $this->hasMany(Sondeo::class, 'idCriterio');
+    }
 }
