@@ -28,14 +28,14 @@
                         @endforeach
                     </div>
                 
-                    <div class="row mt-3">
+                    <div class="row mt-5">
                         <div class="col">
                             <button type="button" id="btnCrearPregunta" class="btn btn-primary" onclick="crearPregunta()">Agregar Pregunta</button>
                         </div>
                     </div>
 
                     <!-- Botón para guardar el formulario -->
-                    <div class="row mt-4 mb-3 text-center">
+                    <div class="row mt-3 mb-3 text-center">
                         <div class="col">
                             <button type="submit" id="btnPublicarSondeo" class="btn btn-success">Publicar Sondeo</button>
                         </div>
