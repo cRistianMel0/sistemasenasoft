@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Sondeo;
 use App\Models\Tema;
 use App\Models\Criterio;
+use App\Models\Administrador;
 
 use Carbon\Carbon; // Facilita el trabajo entre fechas
 
@@ -25,11 +26,19 @@ class SondeosController extends Controller
      */
     public function create()
     {
+        $id = 1;
+        
+        $administrador = Administrador::findOrFail($id);
+
         $temas = Tema::orderBy('nombre', 'ASC')->get();
 
         $criterios = Criterio::orderBy('nombre', 'ASC')->get();
 
-        return view('sondeos/create', ['temas'=>$temas], ['criterios'=>$criterios]);
+        return view('sondeos.create', [
+            'temas' => $temas,
+            'criterios' => $criterios,
+            'administrador' => $administrador,
+        ]);    
     }
 
     /**
@@ -38,14 +47,15 @@ class SondeosController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'idAdministrador' => 'required',
             'idTema' => 'required',
             'idCriterio' => 'required', 
             'titulo' => 'required',
             'descripcion' => 'required',
-            'resultado' => 'required',
+            'resultado' => 'nullable',
             'fechaHoraInicio' => 'required|date|after_or_equal:' . Carbon::now(),
             'fechaHoraFin' => 'required|date|after_or_equal:fechaHoraInicio',
-            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $data = $request->all();
@@ -60,7 +70,9 @@ class SondeosController extends Controller
 
         Sondeo::create($data);
 
-        return redirect()->route('index')->with('success', 'Sondeo creado exitosamente.');
+        $ultimoSondeo = Sondeo::latest('idSondeo')->first();
+
+        return redirect()->route('preguntas.create', ['idSondeo' => $ultimoSondeo->idSondeo]);
     }
 
     /**

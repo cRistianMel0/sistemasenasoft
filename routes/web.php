@@ -38,6 +38,7 @@ Route::get('sondeos/create', 'SondeosController@create')->name('sondeos.create')
 Route::post('sondeos/store', 'SondeosController@store')->name('sondeos.store');
 
 // RUTAS PREGUNTAS
+Route::get('sondeos/{idSondeo}/preguntas/create', 'PreguntasController@create')->name('preguntas.create');
 Route::post('preguntas/store', 'PreguntasController@store')->name('preguntas.store');
 
 

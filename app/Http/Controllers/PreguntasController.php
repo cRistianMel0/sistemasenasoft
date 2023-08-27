@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Pregunta;
+use App\Models\Sondeo;
+
 class PreguntasController extends Controller
 {
     /**
@@ -17,9 +20,15 @@ class PreguntasController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($idSondeo)
     {
-        //
+        $sondeo = Sondeo::findOrFail($idSondeo);
+        $preguntas = $sondeo->preguntas; // Recuperar las preguntas asociadas al sondeo
+    
+        return view('preguntas.create', [
+            'sondeo' => $sondeo,
+            'preguntas' => $preguntas
+        ]);
     }
 
     /**
@@ -27,7 +36,20 @@ class PreguntasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $idSondeo = $request->input('idSondeo');
+        $descripcion = $request->input('descripcionPregunta');
+        $tipo = $request->input('tipoPregunta');
+
+        // Crear una nueva instancia de Pregunta
+        $pregunta = new Pregunta();
+        $pregunta->idSondeo = $idSondeo;
+        $pregunta->descripcion = $descripcion;
+        $pregunta->tipo = $tipo;
+        
+        // Guardar la pregunta
+        $pregunta->save();
+
+        return redirect()->route('preguntas.create', ['idSondeo' => $idSondeo]);
     }
 
     /**
