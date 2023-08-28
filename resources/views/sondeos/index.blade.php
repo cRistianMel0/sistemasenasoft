@@ -50,7 +50,7 @@
                         <div class="mb-1 col-xl-2">
                             <label for="sexo" class="form-label">Sexo</label>
                             <select name="sexo" class="form-select filterInput" id="sexo">
-                                <option value="" disabled selected></option>
+                                <option value="" selected>Default</option>
                                 <option value="Masculino">Masculino</option>
                                 <option value="Femenino">Femenino</option>
                             </select>
@@ -60,7 +60,7 @@
                         <div class="mb-1 col-xl-2">
                             <label class="form-label">Etnia</label>
                             <select name="etnia" class="form-select filterInput" id="etnia">
-                                <option value="" disabled selected></option>
+                                <option value="" selected>Default</option>
                                 <option value="Cundiboyacense">Cundiboyacense</option>
                                 <option value="Paisa">Paisa</option>
                                 <option value="Valluno">Valluno</option>
@@ -71,7 +71,7 @@
                         <div class="mb-1 col-xl-1">
                             <label class="form-label">Edad</label>
                             <select name="edad" class="form-select filterInput" id="edad">
-                                <option value="" disabled selected></option>
+                                <option value="" selected>Default</option>
                                 <option value="< 18">&lt; 18</option>
                                 <option value="> 18">&gt; 18</option>
                             </select>
@@ -81,7 +81,7 @@
                         <div class="mb-1 col-xl-1">
                             <label class="form-label">Estrato</label>
                             <select name="estrato" class="form-select filterInput" id="estrato">
-                                <option value="" disabled selected></option>
+                                <option value="" selected>Default</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -95,7 +95,7 @@
                         <div class="mb-1 col-xl-2">
                             <label class="form-label">Discapacidad</label>
                             <select class="form-select filterInput" id="discapacidad">
-                                <option value="" disabled selected></option>
+                                <option value="" selected>Default</option>
                                 <option value="Discapacidad visual">Discapacidad visual</option>
                                 <option value="Discapacidad auditiva">Discapacidad auditiva</option>
                                 <option value="Discapacidad motriz">Discapacidad motriz</option>
@@ -110,7 +110,7 @@
                         <div class="mb-1 col-xl-2">
                             <label class="form-label">Educación</label>
                             <select name="educacion" class="form-select filterInput" id="nivelEducacion">
-                                <option value="" disabled selected></option>
+                                <option value="" selected>Default</option>
                                 <option value="Guardería o Preescolar">Guardería o Preescolar</option>
                                 <option value="Educación Primaria">Educación Primaria</option>
                                 <option value="Educación Secundaria">Educación Secundaria</option>
