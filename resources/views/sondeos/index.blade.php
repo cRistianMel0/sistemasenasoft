@@ -16,6 +16,7 @@
 
 <body>
     @include('partials/navCiudadanos')
+    @include('partials/ofCanvasLoggedCiudadano')
     <section>
 
         <div>

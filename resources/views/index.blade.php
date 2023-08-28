@@ -18,6 +18,7 @@
 <body>
     {{-- Barra de navegacion --}}
     @include('partials/navCiudadanos')
+    @include('partials/ofCanvasLoggedCiudadano')
 
     {{-- Seccion principal --}}
     <section class="seccionPrincipal container aling-items-strech" id="seccionPrincipal">
