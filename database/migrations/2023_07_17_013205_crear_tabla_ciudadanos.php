@@ -27,7 +27,7 @@ class CrearTablaCiudadanos extends Migration
             $table->string('discapacidad', 40);
             $table->integer('estrato');
             $table->string('nivelEducativo', 40);
-            $table->boolean('dispostivosTecnologicos');
+            $table->boolean('dispositivosTecnologicos');
             $table->string('mediosTecnologicos', 40)->nullable();
             $table->boolean('conectividadInternet');
             $table->timestamps();
