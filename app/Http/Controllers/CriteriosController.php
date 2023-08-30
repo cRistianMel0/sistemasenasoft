@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Criterio;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Sondeo;
 
