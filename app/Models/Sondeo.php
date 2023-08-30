@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Sondeo extends Model
 {
-    protected $fillable = [
-        'idSondeo',
+    protected $fillable=[
         'idAdministrador',
         'idTema',
         'idCriterio',
@@ -19,10 +19,19 @@ class Sondeo extends Model
         'imagen'
     ];
 
-    protected $primaryKey = 'idSondeo';
+    protected $primaryKey='idSondeo';
+
+    
+    public function preguntas()
+    {
+        return $this->hasMany(Pregunta::class, 'idSondeo', 'idSondeo');
+    }
+
     public function criterio()
     {
         return $this->belongsTo(Criterio::class, 'idCriterio');
     }
-
 }
+
+
+
