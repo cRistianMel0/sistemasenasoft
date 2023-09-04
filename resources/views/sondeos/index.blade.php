@@ -44,7 +44,7 @@
                     <div class="bg-light p-4 filterDiv row">
                         <div class="mb-1 ms-1 col-xl-1">
                             <label for="fecha" class="form-label">Fecha</label>
-                            <input type="datetime-local" id="fecha" class="form-control">
+                            <input type="datetime-local" id="fecha" class="form-control" >
                         </div>
 
                         <!-- Filtro: Sexo -->

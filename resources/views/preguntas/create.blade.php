@@ -30,7 +30,7 @@
                 
                     <div class="row mt-5">
                         <div class="col">
-                            <button type="button" id="btnCrearPregunta" class="btn btn-primary" onclick="crearPregunta()">Agregar Pregunta</button>
+                            <button type="button" id="btnCrearPregunta" class="btn btn-primary" >Agregar Pregunta</button>
                         </div>
                     </div>
 

@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Models\Sondeos;
+use App\Models\Sondeo;
+use App\Models\Tema;
+use App\Models\Criterio;
+use App\Models\Administrador;
+
 
 class SondeosController extends Controller
 {
@@ -21,7 +26,8 @@ class SondeosController extends Controller
 
     public function mostrarVistaSondeos()
     {
-        return view('index');
+        $sondeos = Sondeo::all();
+        return view('sondeos.index', ['sondeos' => $sondeos]);
     }
 
     /**
@@ -29,7 +35,19 @@ class SondeosController extends Controller
      */
     public function create()
     {
+        $id = 1;
         
+        $administrador = Administrador::findOrFail($id);
+
+        $temas = Tema::orderBy('nombre', 'ASC')->get();
+
+        //  $criterios = Criterio::orderBy('nombre', 'ASC')->get();
+ 
+        return view('sondeos.create', [
+            'temas' => $temas,
+            // 'criterios' => $criterios,
+            'administrador' => $administrador,
+        ]);    
     }
 
     /**
@@ -40,7 +58,7 @@ class SondeosController extends Controller
         $request->validate([
             'idAdministrador' => 'required',
             'idTema' => 'required',
-            'idCriterio' => 'required', 
+            'idCriterio' => 'nullable', 
             'titulo' => 'required',
             'descripcion' => 'required',
             'resultado' => 'nullable',

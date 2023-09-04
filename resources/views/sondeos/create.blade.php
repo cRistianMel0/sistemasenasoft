@@ -71,7 +71,7 @@
                     <div class="container mt-3" id="parametrizacionDiv" style="display: none;">
                         <p>Seleccione un criterio para que su sondeo vaya dirigirdo a cierto perfil de ciudadanos, sólo sí su sondeo lo requiere.</p>
 
-                        <div class="col-10">
+{{--                         <div class="col-10">
                             <div class="input-group mb-3">
                                 <select name="idCriterio" id="idCriterio" class="form-select">
                                     @foreach($criterios as $criterio)
@@ -80,7 +80,7 @@
                                 </select>
                                 <button type="button" id="btnCrearCriterio" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearCriterioModal">Nuevo</button>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <p>De otra forma deje la opción por defecto "0. No Aplica".</p>
 

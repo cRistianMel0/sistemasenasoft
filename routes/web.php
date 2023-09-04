@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Models\Sondeo;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
@@ -23,17 +22,15 @@ Route::get('/', function (Request $request) {
     return view('index', ['sondeos'=>$sondeos]);
 });
 
+Route::get('administrador', function(){
+    return view('indexAdmin');
+})->name('index.admin');
+
 Route::get('/', 'SondeosController@index')->name('index');
 Route::get('index','SondeosController@mostrarVistaSondeos')->name('sondeos.mostrarVistaSondeos');
-Route::get('sondeos.index', 'CriteriosController@index')->name('sondeos.index');
-/* Route::get('/', 'SondeosController@buscarSondeosAjax')->name('buscar.sondeos.ajax'); */
-
-
-
-
-
 
 // RUTAS CRITERIOS
+Route::get('busquedaCriterios', 'CriteriosController@index')->name('sondeos.index');
 Route::post('criterios/store', 'CriteriosController@store')->name('criterios.store');
 
 // RUTAS TEMAS
