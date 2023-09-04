@@ -22,8 +22,8 @@
                         </li>
                     </ul>
                     <form class="d-flex" role="search" action="{{ route('sondeos.index') }}" method="GET">
-                        <button type="button" class="btn btn-outline-secondary me-2">Register</button>
-                        <button type="button" class="btn btn-outline-success me-2">login</button>
+                        
+                        
                         <div class="search-bars">
                             <input name="buscar" class="form-control smallSearchBar" id="smallSearchBar" type="search"
                                 placeholder="¿Qué buscas?" aria-label="Search" style="width: 150px">
@@ -32,10 +32,21 @@
                         </div>
                         <button class="btn btn-outline-success ms-2 me-2 searchButton" id="searchButton"
                             type="submit"><i class="bi bi-search"></i></button>
-                        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="offcanvas"
+                            @auth
+                            <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="offcanvas"
                             href="#offcanvasExample" role="button" aria-controls="offcanvasExample" type="button">
                             <i class="bi bi-person-circle"></i>
-                        </button>
+                            </button>
+                            @else
+                            <a href="{{route('register')}}">
+                                <button type="button" class="btn btn-outline-secondary me-2">Register</button>
+                            </a>
+                            
+                            <a href="{{route('login')}}">
+                                <button type="button" class="btn btn-outline-success me-2">login</button>
+                            </a>
+                            @endauth
+                        
                     </form>
                 </div>
             </div>

@@ -20,16 +20,13 @@ use App\Http\Controllers\Auth\SondeosController;
 |
 */
 
-Route::get('/', function (Request $request) {
-/* Route::get('/', function () {
+
+Route::get('/', function () {
     $sondeos = Sondeo::all();
         
     return view('index', ['sondeos'=>$sondeos]);
-}); */
-
-Route::get('/', function(){
-    return view('home');
 });
+
 
 Route::get('administrador', function(){
     return view('indexAdmin');
