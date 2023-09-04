@@ -7,6 +7,8 @@
     <title>Inicio</title>
 </head>
 <body>
-    
+    <a href=" {{-- {{route('login.index')}} --}} ">Login</a>
+    <a href="">Register</a>
+    @yield('contenido')
 </body>
 </html>

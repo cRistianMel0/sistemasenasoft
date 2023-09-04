@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'ciudadano' => [
+            'driver' => 'session', // O el driver que estés utilizando
+            'provider' => 'ciudadanos', // El nombre del proveedor de autenticación para ciudadanos
+        ],
     ],
 
     /*
@@ -63,6 +68,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+
+        'ciudadano' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Ciudadano::class,// Asegúrate de que la ruta sea correcta
         ],
 
         // 'users' => [
