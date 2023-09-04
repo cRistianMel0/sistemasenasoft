@@ -2,17 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Models\Sondeos;
+use App\Models\Sondeo;
+use App\Models\Tema;
+use App\Models\Criterio;
+use App\Models\Administrador;
+
 
 class SondeosController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+    
+
+    public function index( )
     {
-        //
+        $sondeos = Sondeo::all();
+        return view('index', ['sondeos' => $sondeos]);
+    }
+
+    public function mostrarVistaSondeos()
+    {
+        $sondeos = Sondeo::all();
+        return view('sondeos.index', ['sondeos' => $sondeos]);
     }
 
     /**
@@ -20,7 +35,19 @@ class SondeosController extends Controller
      */
     public function create()
     {
+        $id = 1;
         
+        $administrador = Administrador::findOrFail($id);
+
+        $temas = Tema::orderBy('nombre', 'ASC')->get();
+
+        //  $criterios = Criterio::orderBy('nombre', 'ASC')->get();
+ 
+        return view('sondeos.create', [
+            'temas' => $temas,
+            // 'criterios' => $criterios,
+            'administrador' => $administrador,
+        ]);    
     }
 
     /**
@@ -28,7 +55,33 @@ class SondeosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'idAdministrador' => 'required',
+            'idTema' => 'required',
+            'idCriterio' => 'nullable', 
+            'titulo' => 'required',
+            'descripcion' => 'required',
+            'resultado' => 'nullable',
+            'fechaHoraInicio' => 'required|date|after_or_equal:' . Carbon::now(),
+            'fechaHoraFin' => 'required|date|after_or_equal:fechaHoraInicio',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        $data = $request->all();
+
+        // Procesar la imagen si se ha cargado
+        if ($request->hasFile('imagen')) {
+            $image = $request->file('imagen');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            $data['imagen'] = $imageName;
+        }
+
+        Sondeo::create($data);
+
+        $ultimoSondeo = Sondeo::latest('idSondeo')->first();
+
+        return redirect()->route('preguntas.create', ['idSondeo' => $ultimoSondeo->idSondeo]);
     }
 
     /**
