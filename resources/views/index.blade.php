@@ -45,7 +45,7 @@
             </div>
             @if (count($sondeos) > 6)
                 <div class="d-flex flex-column justify-content-center align-items-center mt-3">
-                    <a href="{{route('sondeos.mostrarVistaSondeos')}}" class="btn btn-primary">Ver más sondeos</a>
+                    {{-- <a href="{{route('sondeos.mostrarVistaSondeos')}}" class="btn btn-primary">Ver más sondeos</a> --}}
                 </div>
             @endif
         </div>
