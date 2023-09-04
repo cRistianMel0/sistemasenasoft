@@ -22,6 +22,8 @@
                         </li>
                     </ul>
                     <form class="d-flex" role="search" action="{{ route('sondeos.index') }}" method="GET">
+                        <button type="button" class="btn btn-outline-secondary me-2">Register</button>
+                        <button type="button" class="btn btn-outline-success me-2">login</button>
                         <div class="search-bars">
                             <input name="buscar" class="form-control smallSearchBar" id="smallSearchBar" type="search"
                                 placeholder="¿Qué buscas?" aria-label="Search" style="width: 150px">
