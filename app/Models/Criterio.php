@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Criterio extends Model
 {
     protected $fillable = [
-        'fechaInicio',
-        'fecha',
         'sexo',
         'etnia',
         'edad',
