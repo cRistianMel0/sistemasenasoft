@@ -34,7 +34,7 @@ Route::get('administrador', function () {
 })->name('index.admin');
 
 Route::get('/', 'SondeosController@index')->name('index');
-Route::get('index','SondeosController@mostrarVistaSondeos')->name('sondeos.mostrarVistaSondeos');
+Route::get('sondeos/index','SondeosController@mostrarVistaSondeos')->name('sondeos.mostrarVistaSondeos');
 
 // RUTAS CRITERIOS
 Route::get('busquedaCriterios', 'CriteriosController@index')->name('sondeos.index');
