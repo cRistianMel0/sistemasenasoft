@@ -11,8 +11,10 @@
         <h1>Sondeo</h1>
 
         <div class="d-flex">
-            <button id="btnConfiguracion" class="btn btn-outline-secondary rounded-3 rounded-bottom-0 btn-active">Configuración</button>
-            <button id="btnParametrizacion" class="btn btn-outline-secondary rounded-3 rounded-bottom-0">Parametrización</button>   
+            <button id="btnConfiguracion"
+                class="btn btn-outline-secondary rounded-3 rounded-bottom-0 btn-active">Configuración</button>
+            <button id="btnParametrizacion"
+                class="btn btn-outline-secondary rounded-3 rounded-bottom-0">Parametrización</button>
             <button id="btnPreguntas" class="btn btn-outline-secondary rounded-3 rounded-bottom-0" disabled>Preguntas</button>
         </div>
 
@@ -22,7 +24,7 @@
                     @csrf
                     <!-- CONTENIDO DE CONFIGURACIÓN -->
                     <div class="container mt-3" id="configuracionDiv">
-                        <input type="hidden" name="idAdministrador" value="{{$administrador->idAdministrador}}">
+                        <input type="hidden" name="idAdministrador" value="{{ $administrador->idAdministrador }}">
 
                         <div class="row mb-4">
                             <div class="col">
@@ -31,13 +33,14 @@
                                 </div>
                                 <div class="input-group">
                                     <select name="idTema" id="idTema" class="form-select">
-                                        @foreach($temas as $tema)
-                                            <option value="{{$tema->idTema}}">{{$tema->nombre}}</option>                                       
+                                        @foreach ($temas as $tema)
+                                            <option value="{{ $tema->idTema }}">{{ $tema->nombre }}</option>
                                         @endforeach
                                     </select>
-                                    <button type="button" id="btnCrearTema" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearTemaModal">Nuevo</button>
+                                    <button type="button" id="btnCrearTema" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#crearTemaModal">Nuevo</button>
                                 </div>
-                            </div>                            
+                            </div>
                             <div class="col">
                                 <label for="titulo">Título Sondeo</label>
                                 <input type="text" name="titulo" id="titulo" class="form-control" required>
@@ -47,11 +50,13 @@
                         <div class="row mb-5">
                             <div class="col">
                                 <label for="fechaHoraInicio">Fecha y hora de inicio</label>
-                                <input type="datetime-local" name="fechaHoraInicio" id="fechaHoraInicio" class="form-control" required>
+                                <input type="datetime-local" name="fechaHoraInicio" id="fechaHoraInicio"
+                                    class="form-control" required>
                             </div>
                             <div class="col">
                                 <label for="fechaHoraFin">Fecha y hora de fin</label>
-                                <input type="datetime-local" name="fechaHoraFin" id="fechaHoraFin" class="form-control" required>
+                                <input type="datetime-local" name="fechaHoraFin" id="fechaHoraFin" class="form-control"
+                                    required>
                             </div>
                         </div>
 
@@ -69,25 +74,33 @@
 
                     <!-- CONTENIDO DE PARAMETRIZACIÓN -->
                     <div class="container mt-3" id="parametrizacionDiv" style="display: none;">
-                        <p>Seleccione un criterio para que su sondeo vaya dirigirdo a cierto perfil de ciudadanos, sólo sí su sondeo lo requiere.</p>
+                        <p>Seleccione un criterio para que su sondeo vaya dirigirdo a cierto perfil de ciudadanos, sólo sí
+                            su sondeo lo requiere.</p>
+                        <button type="button" id="btnCrearCriterio" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#crearCriterioModal">Nuevo</button>
 
-{{--                         <div class="col-10">
+
+                        <div class="col-10">
                             <div class="input-group mb-3">
                                 <select name="idCriterio" id="idCriterio" class="form-select">
-                                    @foreach($criterios as $criterio)
-                                        <option value="{{$criterio->idCriterio}}">{{$criterio->nombre}}</option>                                       
+                                    @foreach ($criterios as $criterio)
+                                        <option value="{{ $criterio->idCriterio }}">{{ $criterio->idCriterio }}</option>
+                                        
                                     @endforeach
                                 </select>
-                                <button type="button" id="btnCrearCriterio" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearCriterioModal">Nuevo</button>
                             </div>
-                        </div> --}}
+                        </div>
 
-                        <p>De otra forma deje la opción por defecto "0. No Aplica".</p>
+                        <!-- Filtro: Sexo -->
+                        <form id="crearCriterioForm" action="{{ route('criterios.store') }}" method="POST">
 
+
+                        </form>
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary">Siguiente</button>
                         </div>
                     </div>
+
                 </form>
             </div>
         </div>
@@ -123,7 +136,8 @@
     </div>
 
     <!-- Modal para crear un nuevo criterio -->
-    <div class="modal fade" id="crearCriterioModal" tabindex="-1" aria-labelledby="crearCriterioModalLabel" aria-hidden="true">
+    <div class="modal fade" id="crearCriterioModal" tabindex="-1" aria-labelledby="crearCriterioModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -133,36 +147,81 @@
                 <div class="modal-body">
                     <form id="crearCriterioForm" action="{{ route('criterios.store') }}" method="POST">
                         @csrf
-                        <div class="mb-3">
-                            <label for="nombreCriterio" class="form-label">Nombre para el Criterio:</label>
-                            <input type="text" class="form-control" id="nombreCriterio" name="nombreCriterio" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="condicionCriterio" class="form-label">Condición:</label>
-                            <input type="text" class="form-control" id="condicionCriterio" name="condicionCriterio" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="valor1Criterio" class="form-label">Valor 1:</label>
-                            <input type="text" class="form-control" id="valor1Criterio" name="valor1Criterio" required>
-                        </div>
-                        
-                        {{-- Agregar un segundo valor a la condición del criterio a crear --}}
-                        <p>¿Desea agregar un segundo valor para la condición del criterio?</p>
-                        <div class="mb-3">
-                            <label for="siRadio">Si</label>
-                            <input type="radio" name="opcionRadio" id="siRadio" value="si">
-                            
-                            <label for="noRadio">No</label>
-                            <input type="radio" name="opcionRadio" id="noRadio" value="no">
-                        </div>
-                        
-                        <div id="valor2Div" class="mb-3" style="display: none">
-                            <label for="valor2Criterio" class="form-label">Valor 2:</label>
-                            <input type="text" class="form-control" id="valor2Criterio" name="valor2Criterio">
+                        <div class="mb-1 col-6">
+                            <label for="sexo" class="form-label">Sexo</label>
+                            <select name="sexo" class="form-select filterInput" id="sexo">
+                                <option value="" selected>Default</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                            </select>
                         </div>
 
+                        <!-- Filtro: Etnia -->
+                        <div class="mb-1 col-6">
+                            <label class="form-label">Etnia</label>
+                            <select name="etnia" class="form-select filterInput" id="etnia">
+                                <option value="" selected>Default</option>
+                                <option value="Cundiboyacense">Cundiboyacense</option>
+                                <option value="Paisa">Paisa</option>
+                                <option value="Valluno">Valluno</option>
+                            </select>
+                        </div>
+
+                        <!-- Filtro: Edad -->
+                        <div class="mb-1 col-xl-1">
+                            <label class="form-label">Edad</label>
+                            <select name="edad" class="form-select filterInput" id="edad">
+                                <option value="" selected>Default</option>
+                                <option value="< 18">&lt; 18</option>
+                                <option value="> 18">&gt; 18</option>
+                            </select>
+                        </div>
+
+                        <!-- Filtro: Estrato -->
+                        <div class="mb-1 col-xl-1">
+                            <label class="form-label">Estrato</label>
+                            <select name="estrato" class="form-select filterInput" id="estrato">
+                                <option value="" selected>Default</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+
+                        <!-- Filtro: Discapacidad -->
+                        <div class="mb-1 col-6">
+                            <label class="form-label">Discapacidad</label>
+                            <select class="form-select filterInput" id="discapacidad" name="discapacidad">
+                                <option value="" selected>Default</option>
+                                <option value="Discapacidad visual">Discapacidad visual</option>
+                                <option value="Discapacidad auditiva">Discapacidad auditiva</option>
+                                <option value="Discapacidad motriz">Discapacidad motriz</option>
+                                <option value="Discapacidad del habla">Discapacidad del habla</option>
+                                <option value="Discapacidad del espectro autista">Discapacidad del espectro autista
+                                </option>
+                                <option value="Discapacidad del desarrollo">Discapacidad del desarrollo</option>
+                            </select>
+                        </div>
+
+                        <!-- Filtro: Nivel de Educación -->
+                        <div class="mb-1 col-6">
+                            <label class="form-label">Educación</label>
+                            <select name="educacion" class="form-select filterInput" id="nivelEducacion">
+                                <option value="" selected>Default</option>
+                                <option value="Guardería o Preescolar">Guardería o Preescolar</option>
+                                <option value="Educación Primaria">Educación Primaria</option>
+                                <option value="Educación Secundaria">Educación Secundaria</option>
+                                <option value="Bachillerato">Bachillerato</option>
+                                <option value="Educación Superior">Educación Superior</option>
+                            </select>
+                        </div>
+
+                        <p>De otra forma deje la opción por defecto "Default".</p>
                         <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary">Guardar Criterio</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
                 </div>
@@ -174,15 +233,15 @@
 @section('scripts')
     <script>
         // Función para permitir el registro del valor 2 en criterios
-        $(document).ready(function () {
-            $('#siRadio').click(function () {
+        $(document).ready(function() {
+            $('#siRadio').click(function() {
                 if ($('#siRadio').is(':checked')) {
                     $('#valor2Div').show();
                     $('#valor2Criterio').prop('required', true);
                 }
             });
-    
-            $('#noRadio').click(function () {
+
+            $('#noRadio').click(function() {
                 if ($('#noRadio').is(':checked')) {
                     $('#valor2Div').hide();
                     $('#valor2Criterio').prop('required', false);

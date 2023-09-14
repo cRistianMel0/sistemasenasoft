@@ -29,6 +29,11 @@ class SondeosController extends Controller
         $sondeos = Sondeo::all();
         return view('sondeos.index', ['sondeos' => $sondeos]);
     }
+    public function mostrarVistaSondeosAdmin()
+    {
+        $sondeos = Sondeo::all();
+        return view('iterarSondeos', ['sondeos' => $sondeos]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -41,11 +46,11 @@ class SondeosController extends Controller
 
         $temas = Tema::orderBy('nombre', 'ASC')->get();
 
-        //  $criterios = Criterio::orderBy('nombre', 'ASC')->get();
+        $criterios = Criterio::orderBy('sexo', 'ASC')->get();
  
         return view('sondeos.create', [
             'temas' => $temas,
-            // 'criterios' => $criterios,
+            'criterios' => $criterios,
             'administrador' => $administrador,
         ]);    
     }
