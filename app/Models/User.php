@@ -43,4 +43,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function ciudadano()
+    {
+        return $this->hasOne(Ciudadano::class, 'user_id');
+    }
+    public function administrador()
+    {
+        return $this->hasOne(Administrador::class, 'user_id');
+    }
 }

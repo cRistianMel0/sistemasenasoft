@@ -18,6 +18,7 @@
     <section class="seccionPrincipal container aling-items-strech" id="seccionPrincipal">
         <div class="principal-superior d-flex flex-column justify-content-center align-items-center">
             <h1>SistemaSenaSoft</h1>
+            
         </div>
     </section>
 

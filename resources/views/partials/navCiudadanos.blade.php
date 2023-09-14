@@ -17,9 +17,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{route('index.admin')}}">Admin</a>
-                        </li>
+                        @if (Auth::user()->tipo == 'administrador')
+                            <li class="nav-item">
+                                <a class="nav-link " href="{{route('index.admin')}}">Admin</a>
+                            </li>
+                        @endif
+                        
                     </ul>
                     <form class="d-flex" role="search" action="{{ route('sondeos.index') }}" method="GET">
                         

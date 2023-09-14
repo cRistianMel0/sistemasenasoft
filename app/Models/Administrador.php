@@ -10,6 +10,7 @@ class Administrador extends Model
     protected $table = 'administradores';
     protected $primaryKey = 'idAdministrador';
     protected $fillable = [
+        'user_id',
         'nombres',
         'apellidos',
         'tipoDoc',
@@ -22,5 +23,9 @@ class Administrador extends Model
     public function setContrasenaAttribute($value)
     {
         $this->attributes['contrasena'] = Hash::make($value);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

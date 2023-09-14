@@ -113,11 +113,7 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         /* dd($request->all()); */
-        
         App::setLocale('es');
-        
-        
-        
         $validator = $this->validator($request->all());
         /* dd($request->all()); */
         /* dd($validator->errors()); */
@@ -126,7 +122,15 @@ class RegisterController extends Controller
         return redirect()->back()->withErrors($validator)->withInput();
     } else {
         /* dd($request->all()); */
+        
+        $user = User::create([
+            'name' => $request ['nombreCiudadano'],
+            'email' => $request ['emailCiudadano'],
+            'password' => Hash::make($request ['contrasenia'])
+        ]);
+        /* dd($user->id); */
         Ciudadano::create([
+            'user_id' => $user->id,
             'nombres' => $request ['nombreCiudadano'],
             'apellidos' => $request ['apellidoCiudadano'],
             'tipoDoc' => $request ['tipoDocumento'],
@@ -145,13 +149,9 @@ class RegisterController extends Controller
             'dispositivosTecnologicos' => $request ['dispositivosTecnologicos'],
             'mediosTecnologicos' => $request ['mediosTecnologicos'],
             'otrosMediosTecnologicos' => $request ['dispositivoOtro'],
-            'conectividadInternet' => $request ['conectividadInternet']
+            'conectividadInternet' => $request ['conectividadInternet'],
         ]);
-        User::create([
-            'name' => $request ['nombreCiudadano'],
-            'email' => $request ['emailCiudadano'],
-            'password' => Hash::make($request ['contrasenia']),
-        ]);
+        
     }
     
 

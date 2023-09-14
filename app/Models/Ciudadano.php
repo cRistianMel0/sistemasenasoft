@@ -10,6 +10,7 @@ class Ciudadano extends Model
     protected $table = 'ciudadanos';
     protected $primaryKey = 'idCiudadano';
     protected $fillable = [
+        'user_id',
         'nombres',
         'apellidos',
         'tipoDoc',
@@ -36,5 +37,9 @@ class Ciudadano extends Model
     public function setContrasenaAttribute($value)
     {
         $this->attributes['contrasena'] = Hash::make($value);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
