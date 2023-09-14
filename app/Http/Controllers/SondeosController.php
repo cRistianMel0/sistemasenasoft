@@ -29,6 +29,11 @@ class SondeosController extends Controller
         $sondeos = Sondeo::all();
         return view('sondeos.index', ['sondeos' => $sondeos]);
     }
+    public function mostrarVistaSondeosAdmin()
+    {
+        $sondeos = Sondeo::all();
+        return view('iterarSondeos', ['sondeos' => $sondeos]);
+    }
 
     /**
      * Show the form for creating a new resource.

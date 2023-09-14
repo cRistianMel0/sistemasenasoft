@@ -33,10 +33,10 @@
                 @foreach ($sondeosAleatorios as $sondeo)
                     <div class="col-ms-12 col-md-4 col-xxl-3">
                         <div class="card">
-                            <img src="{{ asset('storage') . '/' . $sondeo->imagen }}" class="card-img-top" alt="Imagen del sondeo">
+                            <img src="{{ asset('storage') . '/' . $sondeo->imagen }}" class="card-img-top" alt="Imagen del sondeo" style="width: 200px; height: 200px; margin: 30px; margin-left: 100px;">
                             <div class="card-body">
-                                <h5 class="card-title">{{ $sondeo->titulo }}</h5>
-                                <p class="card-text">{{ $sondeo->descripcion }}</p>
+                                <h5 class="card-title" style="max-height: 3rem">{{ $sondeo->titulo }}</h5>
+                                <p class="card-text" style="max-height: 4rem">{{ $sondeo->descripcion }}</p>
                                 <a href="#" class="btn btn-primary">Contestar</a>
                             </div>
                         </div>

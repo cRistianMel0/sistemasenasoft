@@ -29,9 +29,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('administrador', function () {
-    return view('indexAdmin');
-})->name('index.admin');
+Route::get('sondeos/administrador', 'SondeosController@mostrarVistaSondeosAdmin')->name('index.admin');
 
 Route::get('/', 'SondeosController@index')->name('index');
 Route::get('sondeos/index','SondeosController@mostrarVistaSondeos')->name('sondeos.mostrarVistaSondeos');
