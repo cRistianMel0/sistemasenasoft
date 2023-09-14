@@ -34,7 +34,13 @@ class LoginController extends Controller
     {
         return view('auth.login'); 
     }
-    
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    }
     public function login(Request $request)
     {
         $this->validateLogin($request);

@@ -17,17 +17,21 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>
                         </li>
-                        @if (Auth::user()->tipo == 'administrador')
+                        @auth
+                            @if (Auth::user()->tipo == 'administrador')
                             <li class="nav-item">
                                 <a class="nav-link " href="{{route('index.admin')}}">Admin</a>
                             </li>
-                        @endif
+                            @endif
+                        @endauth
+                        
                         
                     </ul>
                     <form class="d-flex" role="search" action="{{ route('sondeos.index') }}" method="GET">
                         
                         
                         <div class="search-bars">
+                            
                             <input name="buscar" class="form-control smallSearchBar" id="smallSearchBar" type="search"
                                 placeholder="¿Qué buscas?" aria-label="Search" style="width: 150px">
                             <input class="form-control extendedSearchBar" id="extendedSearchBar" type="search"
