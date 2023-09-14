@@ -41,11 +41,11 @@ class SondeosController extends Controller
 
         $temas = Tema::orderBy('nombre', 'ASC')->get();
 
-        //  $criterios = Criterio::orderBy('nombre', 'ASC')->get();
+        $criterios = Criterio::orderBy('sexo', 'ASC')->get();
  
         return view('sondeos.create', [
             'temas' => $temas,
-            // 'criterios' => $criterios,
+            'criterios' => $criterios,
             'administrador' => $administrador,
         ]);    
     }
